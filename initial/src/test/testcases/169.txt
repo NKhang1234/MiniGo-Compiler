@@ -1,0 +1,3 @@
+ /*This is global comment 
+                        /* This is nest comment*/
+                    This is global comment*/ main 

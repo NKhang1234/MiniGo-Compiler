@@ -1,0 +1,5 @@
+    
+            func khang() { 
+                var z str;
+                const khang = a.b() + 2;
+            }

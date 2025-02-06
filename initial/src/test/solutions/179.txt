@@ -1,0 +1,1 @@
+var,x,int,=,main,(,),+,4,/,4,;,var,y,=,abc,/,4,;,var,z,str,;,<EOF>

@@ -1,0 +1,7 @@
+ if (x > 10) {
+                  
+                } else if (x == 10) {
+                    var z str;
+                } else {
+                    var z ID;
+                }

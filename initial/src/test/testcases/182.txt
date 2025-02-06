@@ -1,0 +1,6 @@
+
+            type khang struct {
+                khang string ;
+                khang [5][4]ID ;                     
+            }
+            
