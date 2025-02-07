@@ -1,1 +1,1 @@
-const Dk = DUYKHANG{name "k"};
+const Dk = DUYKHANG{name "khang"};

@@ -1,1 +1,1 @@
-var i ;
+ var z DK = khang.1;

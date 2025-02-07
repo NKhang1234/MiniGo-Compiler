@@ -64,14 +64,14 @@ constDecl: CONST ID ASSIGN (literalConst | expr) SEMICOLON;
 literalConst: (INT_LIT | FLOAT_LIT | STRING_LIT | TRUE | FALSE | NIL);
 
 // Function Declare
-funcDecl: 'func' ID '(' paramListFunc')' typee? '{' funcBody '}' ';' ;
+funcDecl: 'func' ID '(' paramListFunc')' typee? '{' funcBody '}' SEMICOLON?;
 paramListFunc: paramPrimeFunc | ;
 paramPrimeFunc: paramFunc COMMA paramPrimeFunc | paramFunc;
 paramFunc: ID typee;
 funcBody: statementList;
 
 // Method for Struct Declare
-methodStructDecl: 'func' '(' ID ID ')' ID '(' paramListFunc')' typee? '{' funcBody '}' ';' ; // The second 'ID' is 'struct' and 'interface'
+methodStructDecl: 'func' '(' ID ID ')' ID '(' paramListFunc')' typee? '{' funcBody '}' ; // The second 'ID' is 'struct' and 'interface'
 
 // ---------------------------- Expression ---------------------------------------- //
 
@@ -101,6 +101,10 @@ exprS5: ('!' | '-') exprS5 | exprS6;
 exprS6: '(' exprS ')' | operandS;
 operandS: ID | arrAccess;
 
+// Array and Struct Access Composite
+arrStructAccess: arrStructAccess accessList | accessList | arrAccess;
+accessList: positionList | structAccess;
+
 // Array Literal
 arrLit: arrType arrBody;
 arrBody: '{' elementList '}';
@@ -125,7 +129,7 @@ exprM3: exprM3 (PLUS | MINUS) exprM4 | exprM4;
 exprM4: exprM4 (MULTI | DIV | MODULO) exprM5 | exprM5;
 exprM5: ('!' | '-') exprM5 | exprM6;
 exprM6: '(' exprM ')' | operandM;
-operandM: ID | literal | arrAccess | structAccess;
+operandM: ID | literal | arrStructAccess;
 
 // Expression
 expr: expr OR expr1 | expr1;
@@ -135,7 +139,7 @@ expr3: expr3 (PLUS | MINUS) expr4 | expr4;
 expr4: expr4 (MULTI | DIV | MODULO) expr5 | expr5;
 expr5: ('!' | '-') expr5 | expr6;
 expr6: '(' expr ')' | operand;
-operand: ID | literal | funcCall | methodCall | arrAccess | structAccess;
+operand:  ID ('{' structElList '}' | ) | literal | ID | funcCall | methodCall | arrStructAccess ;
 
 literal: literalConst | arrLit | structLit;
 
@@ -150,7 +154,7 @@ constDeclStatement: CONST ID ASSIGN (literalConst | expr);
 
 // Assignemt Statement
 assignment: lhs assignOperator rhs;
-lhs: ID | arrAccess | structAccess;
+lhs: ID | arrStructAccess;
 assignOperator: ASSIGN1 | PLUS_EQUAL| MINUS_EQUAL | MULTI_EQUAL | DIV_EQUAL | MODULO_EQUAL;
 rhs: expr;
 

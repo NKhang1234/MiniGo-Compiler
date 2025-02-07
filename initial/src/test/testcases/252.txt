@@ -1,0 +1,1 @@
+var z khang = a.a.a[2].foo();

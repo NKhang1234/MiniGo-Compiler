@@ -239,6 +239,16 @@ class MiniGoVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MiniGoParser#arrStructAccess.
+    def visitArrStructAccess(self, ctx:MiniGoParser.ArrStructAccessContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MiniGoParser#accessList.
+    def visitAccessList(self, ctx:MiniGoParser.AccessListContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MiniGoParser#arrLit.
     def visitArrLit(self, ctx:MiniGoParser.ArrLitContext):
         return self.visitChildren(ctx)

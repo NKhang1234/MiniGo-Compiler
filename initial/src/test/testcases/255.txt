@@ -1,0 +1,1 @@
+var z khang = KHANG {name: NAME{firt_name: "duy", last_name: "khang"}, age: a[2][3]};

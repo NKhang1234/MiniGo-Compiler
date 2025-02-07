@@ -1,0 +1,1 @@
+var z khang = !a.a.a[2].c[2].foo(1, ID{A: 2});
