@@ -6,6 +6,7 @@ from lexererr import *
 }
 
 @lexer::members {
+_prev_token_type = 0
 def emit(self):
     tk = self.type
     if tk == self.UNCLOSE_STRING:       
@@ -18,7 +19,40 @@ def emit(self):
         result = super().emit();
         raise ErrorToken(result.text); 
     else:
-        return super().emit();
+        token = super().emit();
+        self._prev_token_type = token.type;
+        return token;
+"""
+def nextToken(self):
+    token = super().nextToken()
+    if token is None: 
+        return None
+    if token.type == self.NL and self._prev_token:
+        print(f"prev token: {self._prev_token}")
+        print(f"openCurve: {self.OPEN_CURVE}")
+        if self._prev_token and self._prev_token.type in {
+            self.INT_LIT, 
+            self.FLOAT_LIT,
+            self.TRUE,
+            self.FALSE,
+            self.STRING_LIT,
+            self.INT, 
+            self.FLOAT, 
+            self.BOOLEAN, 
+            self.STRING, 
+            self.RETURN, 
+            self.CONTINUE, 
+            self.BREAK, 
+            self.CLOSE_ROUND, 
+            self.CLOSE_CURVE, 
+            self.CLOSE_SQUARE
+        }:
+            token.type = self.SEMICOLON
+            token.text = ';'
+        else:
+            return super().nextToken()
+    return token
+"""
 }
 
 options{
@@ -38,17 +72,17 @@ arrType:  dimenList (INT | FLOAT | BOOLEAN | STRING | ID); // ID is notified for
 dimenList: '[' (INT_LIT | ID) ']' dimenList |  ('[' (INT_LIT | ID) ']'); // ID is notified for 'constant'
 
 // Struct Declare
-structDecl: TYPE ID STRUCT '{' structBody '}' (SEMICOLON | NL);
+structDecl: TYPE ID STRUCT '{' structBody '}' SEMICOLON;
 structBody: listField;
 listField: field listField | field;
-field: ID typee (SEMICOLON | NL);
+field: ID typee SEMICOLON;
 
 // Interface Declare
-interfaceDecl: TYPE ID INTERFACE '{' interfaceBody '}' (SEMICOLON | NL);
+interfaceDecl: TYPE ID INTERFACE '{' interfaceBody '}' SEMICOLON;
 interfaceBody: listMethod;
 
 listMethod: method listMethod | method;
-method: ID '(' paramList ')' typee? (SEMICOLON | NL);
+method: ID '(' paramList ')' typee? SEMICOLON;
 
 paramList: paramPrime | ;
 paramPrime: param COMMA paramPrime | param;
@@ -64,14 +98,11 @@ constDecl: CONST ID ASSIGN (literalConst | expr) SEMICOLON;
 literalConst: (INT_LIT | FLOAT_LIT | STRING_LIT | TRUE | FALSE | NIL);
 
 // Function Declare
-funcDecl: 'func' ID '(' paramListFunc')' typee? '{' funcBody '}' SEMICOLON?;
-paramListFunc: paramPrimeFunc | ;
-paramPrimeFunc: paramFunc COMMA paramPrimeFunc | paramFunc;
-paramFunc: ID typee;
+funcDecl: 'func' ID '(' paramList ')' typee? '{' funcBody '}' SEMICOLON?;
 funcBody: statementList;
 
 // Method for Struct Declare
-methodStructDecl: 'func' '(' ID ID ')' ID '(' paramListFunc')' typee? '{' funcBody '}' ; // The second 'ID' is 'struct' and 'interface'
+methodStructDecl: 'func' '(' ID ID ')' ID '(' paramList')' typee? '{' funcBody '}' ; // The second 'ID' is 'struct' and 'interface'
 
 // ---------------------------- Expression ---------------------------------------- //
 
@@ -144,9 +175,8 @@ operand:  ID ('{' structElList '}' | ) | literal | ID | funcCall | methodCall | 
 literal: literalConst | arrLit | structLit;
 
 // ---------------------------- Statement ---------------------------------------- //
-statement: (varDeclStatement | constDeclStatement | assignment | ifStatement | forStatement | breakStatement | continueStatement | callStatement | returnStatement) (SEMICOLON | NL);
-statementList: statementListPrime | ;
-statementListPrime: statement statementListPrime | statement;
+statement: (varDeclStatement | constDeclStatement | assignment | ifStatement | forStatement | breakStatement | continueStatement | callStatement | returnStatement) SEMICOLON;
+statementList: statement statementList | statement;
 
 // Variable and Constant Declaration
 varDeclStatement: VAR ID (typee ASSIGN expr | ASSIGN expr | typee);
@@ -170,10 +200,11 @@ forStatement: forBasic | forInitial | forRange;
 forBasic: FOR expr '{' statementList '}';
 
 forInitial: FOR initialization SEMICOLON condition SEMICOLON update '{' statementList '}';
-initialization: assignment | varDeclInitial;
+initialization: assignScalar | varDeclInitial;
 varDeclInitial: VAR ID typee? ASSIGN expr;
 condition: expr;
-update: assignment;
+update: assignScalar;
+assignScalar: ID assignOperator expr;
 
 forRange: FOR (ID | '_') COMMA ID ASSIGN1 RANGE ID '{' statementList '}';
 
@@ -257,14 +288,16 @@ ID: (Letter | '_') (Letter | Digit | '_')*;
 
 // Literal
 //-------- Integer Literals
-INT_LIT: (Decimal | Binary | Octal | Hex) {
-    if self.text[:2] == '0b' or self.text[:2] == '0B':
-        self.text = str(int(self.text[2:], 2))
-    elif self.text[:2] == '0o' or self.text[:2] == '0O':
-        self.text = str(int(self.text[2:], 8))
-    elif self.text[:2] == '0x' or self.text[:2] == '0X':
-        self.text = str(int(self.text[2:], 16))
-};
+INT_LIT: (Decimal | Binary | Octal | Hex) 
+// {
+//     if self.text[:2] == '0b' or self.text[:2] == '0B':
+//         self.text = str(int(self.text[2:], 2))
+//     elif self.text[:2] == '0o' or self.text[:2] == '0O':
+//         self.text = str(int(self.text[2:], 8))
+//     elif self.text[:2] == '0x' or self.text[:2] == '0X':
+//         self.text = str(int(self.text[2:], 16))
+// }
+;
 fragment Decimal: '0' | ([1-9] Digit*);
 fragment Binary: '0' [bB] [0-1]+;
 fragment Octal: '0' [oO] [0-7]+;
@@ -273,7 +306,7 @@ fragment Hex: '0' [xX] [0-9a-fA-F]+;
 //-------- Floating-point Literals
 FLOAT_LIT: No_exponent | Exponent;
 fragment No_exponent: Digit+ '.' Digit*;
-fragment Exponent: Digit+ '.' Digit+ [eE] ('+'|'-')? Digit+;
+fragment Exponent: Digit+ '.' Digit* [eE] ('+'|'-')? Digit+;
 
 //-------- String Literals
 STRING_LIT: '"' (String_Character|String_Escape)* '"'{
@@ -289,8 +322,19 @@ fragment String_Escape:  '\\n' | '\\t' | '\\r' | '\\"'| '\\\\';
 //-------- Comment
 COMMENT_INLINE: '//' (~[\n])* ('\n' | EOF) -> skip;
 COMMENT_BLOCK: '/*' (~[*/] | COMMENT_BLOCK)* '*/' -> skip;
+// COMMENT_BLOCK: '/*' (COMMENT_BLOCK | .)*? '*/' -> skip;
 
-NL: '\n' -> skip; //skip newlines
+NL: '\n' 
+{
+    print(f"prev_token: {self._prev_token_type}")
+    if(self._prev_token_type in {self.INT_LIT, self.FLOAT_LIT, self.TRUE, self.FALSE, self.STRING_LIT, self.INT, self.FLOAT, self.BOOLEAN, self.STRING, self.RETURN, self.CONTINUE, self.BREAK, self.CLOSE_ROUND, self.CLOSE_CURVE, self.CLOSE_SQUARE}):
+        print(f"Im in, before me: {self._prev_token_type}")
+        self.text = ';'  
+        self.type = self.SEMICOLON
+    else:
+        self.skip()
+}
+;
 
 WS : [ \t\r\f]+ -> skip ; // skip spaces, tabs 
 
@@ -298,16 +342,17 @@ fragment ILL_ESC: '\\' ~[ntr"\\];
 
 ILLEGAL_ESCAPE: '"' (String_Character|String_Escape)* ILL_ESC {
     self.text = self.text[1:]
-    print(f"illegal escape: {self.text}")
 };
-UNCLOSE_STRING: '"' (String_Character|String_Escape)* ('\n' | '\r\n'| EOF) {
+UNCLOSE_STRING: '"' (String_Character|String_Escape)* ('\n' | '\r\n'| EOF) 
+{
     if(len(self.text) >= 2 and self.text[-2] == '\r' and self.text[-1] == '\n'):
-        self.text = self.text[1:-2]
+        self.text = self.text[:-2]
     elif(self.text[-1] == '\n'):
-        self.text = self.text[1:-1]
+        self.text = self.text[:-1]
     else:
         self.text = self.text[1:]
-};
+}
+;
 ERROR_CHAR: .;
 
 // -------------------------------------- End Lexical ---------------------------------------------

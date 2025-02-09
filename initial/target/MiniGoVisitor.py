@@ -114,21 +114,6 @@ class MiniGoVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MiniGoParser#paramListFunc.
-    def visitParamListFunc(self, ctx:MiniGoParser.ParamListFuncContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#paramPrimeFunc.
-    def visitParamPrimeFunc(self, ctx:MiniGoParser.ParamPrimeFuncContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#paramFunc.
-    def visitParamFunc(self, ctx:MiniGoParser.ParamFuncContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by MiniGoParser#funcBody.
     def visitFuncBody(self, ctx:MiniGoParser.FuncBodyContext):
         return self.visitChildren(ctx)
@@ -399,11 +384,6 @@ class MiniGoVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MiniGoParser#statementListPrime.
-    def visitStatementListPrime(self, ctx:MiniGoParser.StatementListPrimeContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by MiniGoParser#varDeclStatement.
     def visitVarDeclStatement(self, ctx:MiniGoParser.VarDeclStatementContext):
         return self.visitChildren(ctx)
@@ -481,6 +461,11 @@ class MiniGoVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MiniGoParser#update.
     def visitUpdate(self, ctx:MiniGoParser.UpdateContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MiniGoParser#assignScalar.
+    def visitAssignScalar(self, ctx:MiniGoParser.AssignScalarContext):
         return self.visitChildren(ctx)
 
 

@@ -6,13 +6,16 @@ class ParserSuite(unittest.TestCase):
 #------------------------------------------PROVIDED TEST -------------------------------------------------------------
     def test_simple_program(self):
         """Simple program: void main() {} """
-        input = """func main() {};"""
+        input = """func main() {
+                    var a int
+                    }"""
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input,expect,301))
 
     def test_more_complex_program(self):
         """More complex program"""
         input = """func foo () {
+        var a int;
         };"""
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input,expect,302))
@@ -37,17 +40,19 @@ class ParserSuite(unittest.TestCase):
     
     # ------------------------- Newline or Semicolon END declared ERROR
 
-    # def test_267(self):
-    #     """declared struct"""
-    #     input = """
-    #         type khang struct {
-    #             khang string ;
-    #             khang [1][3]khang ;                     
-    #         }
-    #         type khang struct {}                                                                       
-    #     """
-    #     expect = "successful"
-    #     self.assertTrue(TestParser.checkParser(input, expect, 267))
+    def test_267(self):
+        """declared struct"""
+        input = """
+            type khang struct {
+                khang string ;
+                khang [1][3]khang ;                     
+            }
+            type khang struct {
+                khang string ;
+            }                                                                       
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input, expect, 267))
         
 
     # def test_269(self):
