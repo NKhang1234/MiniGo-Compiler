@@ -1,4 +1,14 @@
 
-                                    func Add() {
-                                        (1+2).foo(2 + 3, a {a:2})
-                                    }
+            func (p Person) Greet() string {
+                for i := 0
+                    i < 10
+                    i += 1 {
+                    return
+                }
+                for i := 0
+                    i < 10
+                    i += 1 
+                {
+                    return
+                }
+            };  

@@ -22,37 +22,6 @@ def emit(self):
         token = super().emit();
         self._prev_token_type = token.type;
         return token;
-"""
-def nextToken(self):
-    token = super().nextToken()
-    if token is None: 
-        return None
-    if token.type == self.NL and self._prev_token:
-        print(f"prev token: {self._prev_token}")
-        print(f"openCurve: {self.OPEN_CURVE}")
-        if self._prev_token and self._prev_token.type in {
-            self.INT_LIT, 
-            self.FLOAT_LIT,
-            self.TRUE,
-            self.FALSE,
-            self.STRING_LIT,
-            self.INT, 
-            self.FLOAT, 
-            self.BOOLEAN, 
-            self.STRING, 
-            self.RETURN, 
-            self.CONTINUE, 
-            self.BREAK, 
-            self.CLOSE_ROUND, 
-            self.CLOSE_CURVE, 
-            self.CLOSE_SQUARE
-        }:
-            token.type = self.SEMICOLON
-            token.text = ';'
-        else:
-            return super().nextToken()
-    return token
-"""
 }
 
 options{
@@ -98,15 +67,15 @@ constDecl: CONST ID ASSIGN (literalConst | expr) SEMICOLON;
 literalConst: (INT_LIT | FLOAT_LIT | STRING_LIT | TRUE | FALSE | NIL);
 
 // Function Declare
-funcDecl: 'func' ID '(' paramList ')' typee? '{' funcBody '}' SEMICOLON?;
+funcDecl: 'func' ID '(' paramList ')' typee? '{' funcBody '}' SEMICOLON;
 funcBody: statementList;
 
 // Method for Struct Declare
-methodStructDecl: 'func' '(' ID ID ')' ID '(' paramList')' typee? '{' funcBody '}' ; // The second 'ID' is 'struct' and 'interface'
+methodStructDecl: 'func' '(' ID ID ')' ID '(' paramList')' typee? '{' funcBody '}' SEMICOLON; // The second 'ID' is 'struct' and 'interface'
 
 // ---------------------------- Expression ---------------------------------------- //
 
-// Array Accessing Element
+/* // Array Accessing Element
 arrAccess: exprA positionList;
 positionList: '[' expr ']' positionList | '[' expr ']'; // Array Accessing Element can be described at expr6
 
@@ -117,9 +86,9 @@ exprA3: exprA3 (PLUS | MINUS) exprA4 | exprA4;
 exprA4: exprA4 (MULTI | DIV | MODULO) exprA5 | exprA5;
 exprA5: ('!' | '-') exprA5 | exprA6;
 exprA6: '(' exprA ')' | operandA;
-operandA: ID | literal | funcCall;
+operandA: ID ('{' structElList '}' | ) | literal | funcCall | ID; */
 
-// Struct Field Accessing
+/* // Struct Field Accessing
 structAccess: refList DOT ID; // Struct Field Accessing can be described at expr6 
 refList: refList DOT exprS | exprS;
 
@@ -130,17 +99,18 @@ exprS3: exprS3 (PLUS | MINUS) exprS4 | exprS4;
 exprS4: exprS4 (MULTI | DIV | MODULO) exprS5 | exprS5;
 exprS5: ('!' | '-') exprS5 | exprS6;
 exprS6: '(' exprS ')' | operandS;
-operandS: ID | arrAccess;
+operandS: literal | arrAccess | funcCall | ID ('{' structElList '}' | ) | ID; */
 
-// Array and Struct Access Composite
+
+/* // Array and Struct Access Composite
 arrStructAccess: arrStructAccess accessList | accessList | arrAccess;
-accessList: positionList | structAccess;
+accessList: positionList | structAccess; */
 
 // Array Literal
 arrLit: arrType arrBody;
 arrBody: '{' elementList '}';
 elementList: element COMMA elementList | element;
-element: expr | arrBody;
+element: literalConst | structLit | arrBody;
 // Struct Literal
 structLit: ID '{' structElList '}';
 structElList: structELPrime | ;
@@ -149,9 +119,11 @@ structEL:ID COLON expr;
 
 // Function call
 funcCall: ID '(' argumentList ')';
-argumentList: elementList | ;
+argumentList: argumentListPrime | ;
+argumentListPrime: argument COMMA argumentListPrime | argument;
+argument: expr | arrBody;
 
-// Method Call
+/* // Method Call
 methodCall: exprM DOT ID '(' argumentList ')'; // Method Call is a func call with DOT => Can be described in expr6
 exprM: exprM OR exprM1 | exprM1;
 exprM1: exprM1 AND exprM2 | exprM2;
@@ -160,7 +132,7 @@ exprM3: exprM3 (PLUS | MINUS) exprM4 | exprM4;
 exprM4: exprM4 (MULTI | DIV | MODULO) exprM5 | exprM5;
 exprM5: ('!' | '-') exprM5 | exprM6;
 exprM6: '(' exprM ')' | operandM;
-operandM: ID | literal | arrStructAccess;
+operandM: literal | arrStructAccess | ID; */
 
 // Expression
 expr: expr OR expr1 | expr1;
@@ -169,8 +141,9 @@ expr2: expr2 (EQUAL | NOT_EQUAL | LESS_THAN | LESS_EQUAL | GREATER_THAN | GREATE
 expr3: expr3 (PLUS | MINUS) expr4 | expr4;
 expr4: expr4 (MULTI | DIV | MODULO) expr5 | expr5;
 expr5: ('!' | '-') expr5 | expr6;
-expr6: '(' expr ')' | operand;
-operand:  ID ('{' structElList '}' | ) | literal | ID | funcCall | methodCall | arrStructAccess ;
+expr6: expr6 '[' expr ']'| expr6 DOT ID | expr6 DOT funcCall| expr7;// access array | struct access | method call
+expr7: '(' expr ')' | operand;
+operand: literal | funcCall | ID ('{' structElList '}' | ) | ID;
 
 literal: literalConst | arrLit | structLit;
 
@@ -184,7 +157,7 @@ constDeclStatement: CONST ID ASSIGN (literalConst | expr);
 
 // Assignemt Statement
 assignment: lhs assignOperator rhs;
-lhs: ID | arrStructAccess;
+lhs: lhs '[' expr ']'| lhs DOT ID | ID;
 assignOperator: ASSIGN1 | PLUS_EQUAL| MINUS_EQUAL | MULTI_EQUAL | DIV_EQUAL | MODULO_EQUAL;
 rhs: expr;
 
@@ -206,7 +179,7 @@ condition: expr;
 update: assignScalar;
 assignScalar: ID assignOperator expr;
 
-forRange: FOR (ID | '_') COMMA ID ASSIGN1 RANGE ID '{' statementList '}';
+forRange: FOR (ID | '_') COMMA ID ASSIGN1 RANGE lhs '{' statementList '}';
 
 // Break Statememt
 breakStatement: BREAK;
@@ -215,10 +188,10 @@ breakStatement: BREAK;
 continueStatement: CONTINUE;
 
 // Function and Method Call Statement
-callStatement: funcCall | methodCall;
+callStatement: funcCall | lhs DOT funcCall;
 
 // Return Statement
-returnStatement: RETURN expr;
+returnStatement: RETURN expr?;
 
 // -------------------------------------- End Parser -----------------------------------------------------------------------
 
@@ -324,11 +297,12 @@ COMMENT_INLINE: '//' (~[\n])* ('\n' | EOF) -> skip;
 COMMENT_BLOCK: '/*' (~[*/] | COMMENT_BLOCK)* '*/' -> skip;
 // COMMENT_BLOCK: '/*' (COMMENT_BLOCK | .)*? '*/' -> skip;
 
-NL: '\n' 
+NL: '\n'
 {
-    print(f"prev_token: {self._prev_token_type}")
-    if(self._prev_token_type in {self.INT_LIT, self.FLOAT_LIT, self.TRUE, self.FALSE, self.STRING_LIT, self.INT, self.FLOAT, self.BOOLEAN, self.STRING, self.RETURN, self.CONTINUE, self.BREAK, self.CLOSE_ROUND, self.CLOSE_CURVE, self.CLOSE_SQUARE}):
-        print(f"Im in, before me: {self._prev_token_type}")
+    # print(f"prev_token: {self._prev_token_type}")
+    if(self._prev_token_type in {self.ID,self.INT_LIT, self.FLOAT_LIT, self.TRUE, self.FALSE, self.STRING_LIT, self.INT, self.FLOAT, self.BOOLEAN, self.STRING, self.RETURN, self.CONTINUE, self.BREAK, self.CLOSE_ROUND, self.CLOSE_CURVE, self.CLOSE_SQUARE}):
+        # print(f"Im in, before me: {self._prev_token_type}")
+        # self.emitToken(self.commonToken(self.SEMICOLON, ';'))
         self.text = ';'  
         self.type = self.SEMICOLON
     else:

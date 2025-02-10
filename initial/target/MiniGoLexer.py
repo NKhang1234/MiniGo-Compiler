@@ -392,37 +392,6 @@ class MiniGoLexer(Lexer):
             token = super().emit();
             self._prev_token_type = token.type;
             return token;
-    """
-    def nextToken(self):
-        token = super().nextToken()
-        if token is None: 
-            return None
-        if token.type == self.NL and self._prev_token:
-            print(f"prev token: {self._prev_token}")
-            print(f"openCurve: {self.OPEN_CURVE}")
-            if self._prev_token and self._prev_token.type in {
-                self.INT_LIT, 
-                self.FLOAT_LIT,
-                self.TRUE,
-                self.FALSE,
-                self.STRING_LIT,
-                self.INT, 
-                self.FLOAT, 
-                self.BOOLEAN, 
-                self.STRING, 
-                self.RETURN, 
-                self.CONTINUE, 
-                self.BREAK, 
-                self.CLOSE_ROUND, 
-                self.CLOSE_CURVE, 
-                self.CLOSE_SQUARE
-            }:
-                token.type = self.SEMICOLON
-                token.text = ';'
-            else:
-                return super().nextToken()
-        return token
-    """
 
 
     def action(self, localctx:RuleContext, ruleIndex:int, actionIndex:int):
@@ -451,9 +420,10 @@ class MiniGoLexer(Lexer):
     def NL_action(self, localctx:RuleContext , actionIndex:int):
         if actionIndex == 1:
 
-                print(f"prev_token: {self._prev_token_type}")
-                if(self._prev_token_type in {self.INT_LIT, self.FLOAT_LIT, self.TRUE, self.FALSE, self.STRING_LIT, self.INT, self.FLOAT, self.BOOLEAN, self.STRING, self.RETURN, self.CONTINUE, self.BREAK, self.CLOSE_ROUND, self.CLOSE_CURVE, self.CLOSE_SQUARE}):
-                    print(f"Im in, before me: {self._prev_token_type}")
+                # print(f"prev_token: {self._prev_token_type}")
+                if(self._prev_token_type in {self.ID,self.INT_LIT, self.FLOAT_LIT, self.TRUE, self.FALSE, self.STRING_LIT, self.INT, self.FLOAT, self.BOOLEAN, self.STRING, self.RETURN, self.CONTINUE, self.BREAK, self.CLOSE_ROUND, self.CLOSE_CURVE, self.CLOSE_SQUARE}):
+                    # print(f"Im in, before me: {self._prev_token_type}")
+                    # self.emitToken(self.commonToken(self.SEMICOLON, ';'))
                     self.text = ';'  
                     self.type = self.SEMICOLON
                 else:

@@ -1,5 +1,2 @@
 
-            var x int = foo() + 3 / 4
-            var y = "Hello" / 4;   
-            var z KHANG;
-        
+            func (c c) Add(x, c int) {return ;}

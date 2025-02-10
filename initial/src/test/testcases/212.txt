@@ -1,1 +1,1 @@
-const Dk = [nil]ID3{1, "string", {1.21, "khang"}};
+const a = [1]int{1+1}

@@ -55,11 +55,12 @@ class LexerSuite(unittest.TestCase):
     def test_011(self):
         """COMEMENTS"""
         self.assertTrue(TestLexer.checkLexeme("""
-            type khang struct {
-                khang string ;
-                khang [1][3]khang ;                     
-            }
-            type khang struct {}                                                                       
+                                        
+            func (c c) Add(x int)  {return;}
+            
+            func Add(x int, y int) {return;}; var c int;
+            
+            var c int; type Calculator struct{a int;} type Calculator struct {} var c int;
         ""","func,main,(,),{,var,a,int,;,},;,<EOF>", 111))
    
 

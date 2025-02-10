@@ -124,116 +124,6 @@ class MiniGoVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MiniGoParser#arrAccess.
-    def visitArrAccess(self, ctx:MiniGoParser.ArrAccessContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#positionList.
-    def visitPositionList(self, ctx:MiniGoParser.PositionListContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprA.
-    def visitExprA(self, ctx:MiniGoParser.ExprAContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprA1.
-    def visitExprA1(self, ctx:MiniGoParser.ExprA1Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprA2.
-    def visitExprA2(self, ctx:MiniGoParser.ExprA2Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprA3.
-    def visitExprA3(self, ctx:MiniGoParser.ExprA3Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprA4.
-    def visitExprA4(self, ctx:MiniGoParser.ExprA4Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprA5.
-    def visitExprA5(self, ctx:MiniGoParser.ExprA5Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprA6.
-    def visitExprA6(self, ctx:MiniGoParser.ExprA6Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#operandA.
-    def visitOperandA(self, ctx:MiniGoParser.OperandAContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#structAccess.
-    def visitStructAccess(self, ctx:MiniGoParser.StructAccessContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#refList.
-    def visitRefList(self, ctx:MiniGoParser.RefListContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprS.
-    def visitExprS(self, ctx:MiniGoParser.ExprSContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprS1.
-    def visitExprS1(self, ctx:MiniGoParser.ExprS1Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprS2.
-    def visitExprS2(self, ctx:MiniGoParser.ExprS2Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprS3.
-    def visitExprS3(self, ctx:MiniGoParser.ExprS3Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprS4.
-    def visitExprS4(self, ctx:MiniGoParser.ExprS4Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprS5.
-    def visitExprS5(self, ctx:MiniGoParser.ExprS5Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprS6.
-    def visitExprS6(self, ctx:MiniGoParser.ExprS6Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#operandS.
-    def visitOperandS(self, ctx:MiniGoParser.OperandSContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#arrStructAccess.
-    def visitArrStructAccess(self, ctx:MiniGoParser.ArrStructAccessContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#accessList.
-    def visitAccessList(self, ctx:MiniGoParser.AccessListContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by MiniGoParser#arrLit.
     def visitArrLit(self, ctx:MiniGoParser.ArrLitContext):
         return self.visitChildren(ctx)
@@ -284,48 +174,13 @@ class MiniGoVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MiniGoParser#methodCall.
-    def visitMethodCall(self, ctx:MiniGoParser.MethodCallContext):
+    # Visit a parse tree produced by MiniGoParser#argumentListPrime.
+    def visitArgumentListPrime(self, ctx:MiniGoParser.ArgumentListPrimeContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MiniGoParser#exprM.
-    def visitExprM(self, ctx:MiniGoParser.ExprMContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprM1.
-    def visitExprM1(self, ctx:MiniGoParser.ExprM1Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprM2.
-    def visitExprM2(self, ctx:MiniGoParser.ExprM2Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprM3.
-    def visitExprM3(self, ctx:MiniGoParser.ExprM3Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprM4.
-    def visitExprM4(self, ctx:MiniGoParser.ExprM4Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprM5.
-    def visitExprM5(self, ctx:MiniGoParser.ExprM5Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#exprM6.
-    def visitExprM6(self, ctx:MiniGoParser.ExprM6Context):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniGoParser#operandM.
-    def visitOperandM(self, ctx:MiniGoParser.OperandMContext):
+    # Visit a parse tree produced by MiniGoParser#argument.
+    def visitArgument(self, ctx:MiniGoParser.ArgumentContext):
         return self.visitChildren(ctx)
 
 
@@ -361,6 +216,11 @@ class MiniGoVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MiniGoParser#expr6.
     def visitExpr6(self, ctx:MiniGoParser.Expr6Context):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MiniGoParser#expr7.
+    def visitExpr7(self, ctx:MiniGoParser.Expr7Context):
         return self.visitChildren(ctx)
 
 

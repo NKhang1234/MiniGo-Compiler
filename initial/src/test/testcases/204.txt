@@ -1,1 +1,1 @@
-const Dk = nil;
+const Dk = foo(1+1);
