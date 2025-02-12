@@ -1,1 +1,1 @@
-(,true,),{,something,},(,false,),{,something,},<EOF>
+v,=,nil,<EOF>

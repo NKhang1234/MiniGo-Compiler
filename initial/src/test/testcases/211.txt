@@ -1,1 +1,1 @@
-const Dk = [true]ID{2, 3};
+const Mn = [true]ID{2, 3};

@@ -1,1 +1,1 @@
- const Dk = [ID1][ID2]int{{1, "string", {21}}, {1.21, "khang"}}; 
+ const Mn = [ID1][ID2]int{{1, "string", {21}}, {1.21, "nhat"}}; 

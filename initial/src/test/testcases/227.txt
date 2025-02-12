@@ -1,1 +1,1 @@
-const Dk = DUYKHANG{"khang"};
+const Mn = MinhNhat{"nhat"};

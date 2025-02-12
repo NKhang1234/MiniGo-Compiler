@@ -1,1 +1,1 @@
- var z DK = khang.name;
+ var z Mn = nhat.name;

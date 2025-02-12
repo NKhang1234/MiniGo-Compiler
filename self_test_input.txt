@@ -1,1 +1,7 @@
-const Dk = DUYKHANG{name \"khang\"};
+
+                                    func Add() {
+                                        for var i [2]int = 0; foo().a.b(); i[3] := 1 {
+                                            // loop body
+                                            break;
+                                        };
+                                    };

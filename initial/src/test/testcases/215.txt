@@ -1,1 +1,1 @@
-const Dk = [5][0]string{1 "string" 3};
+const Mn = [5][0]string{1 "string" 3};

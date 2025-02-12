@@ -1,6 +1,6 @@
-    
-            func khang() {
-                if (x > 10) {return;} 
+
+            func nhat() {
+                if (x > 10) {return;}
                 if (x > 10) {
                   return;
                 } else if (x == 10) {

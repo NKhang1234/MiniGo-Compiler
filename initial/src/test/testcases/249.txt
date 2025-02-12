@@ -1,1 +1,1 @@
-const Dk = a.a.foo();
+const Mn = a.a.foo();

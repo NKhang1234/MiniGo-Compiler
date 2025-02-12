@@ -1,9 +1,9 @@
-    
-            func khang() {
+
+            func nhat() {
                 var x int = foo() + 3 / 4;
-                var y = "Hello" / 4;   
+                var y = "Hello" / 4;
                 var z str;
-                                        
-                const khang = a.b() + 2;
-            }                                       
+
+                const nhat = a.b() + 2;
+            }
         

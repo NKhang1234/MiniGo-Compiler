@@ -1,0 +1,1 @@
+type,Casio,interface,{,Sub,(,x,,,y,int,),int,;,Subtract,(,a,,,b,float,,,c,int,),[,9,],array,;,Reset,(,),;,Show,(,name,string,),;,},<EOF>

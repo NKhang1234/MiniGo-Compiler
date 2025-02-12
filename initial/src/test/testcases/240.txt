@@ -1,1 +1,1 @@
- var z DK = add();
+ var z Mn = add();

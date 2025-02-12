@@ -1,5 +1,5 @@
-    
-            func khang() { 
+
+            func haha() {
                 var z str;
-                const khang = a.b() + 2;
+                const ooo = c.d() + 5;
             }

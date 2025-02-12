@@ -1,11 +1,11 @@
-    
-            func khang() {                           
+
+            func nhat() {
                 for i < 10 {break;}
                 break;
                 continue;
                 return 1;
                 return
-                foo(2 + x, 4 / y); m.goo();                        
+                foo(2 + x, 4 / y); m.goo();
              }
-                                        
+
         

@@ -1,5 +1,5 @@
 
-            func khang(x int, y int) int {}
-            func khang1() [2][3] ID {}
-            func khang2() {}                                       
+            func nhat(x int, y int) int {}
+            func nhat1() [2][3] ID {}
+            func nhat2() {}
         

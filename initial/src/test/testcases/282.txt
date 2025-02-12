@@ -1,6 +1,6 @@
 
                 func Add() {
                     const a = a[2].b
-                    var a = a[2].b; var a = "s";           
+                    var a = a[2].b; var a = "s";
                 }
                 

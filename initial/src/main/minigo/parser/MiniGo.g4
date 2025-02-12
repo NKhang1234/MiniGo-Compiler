@@ -188,7 +188,7 @@ breakStatement: BREAK;
 continueStatement: CONTINUE;
 
 // Function and Method Call Statement
-callStatement: funcCall | lhs DOT funcCall;
+callStatement: funcCall | expr DOT funcCall;
 
 // Return Statement
 returnStatement: RETURN expr?;
@@ -282,10 +282,12 @@ fragment No_exponent: Digit+ '.' Digit*;
 fragment Exponent: Digit+ '.' Digit* [eE] ('+'|'-')? Digit+;
 
 //-------- String Literals
-STRING_LIT: '"' (String_Character|String_Escape)* '"'{
-    self.text = self.text[1:-1]
-    # print(f"string lit: {self.text}")
-};
+STRING_LIT: '"' (String_Character|String_Escape)* '"'
+// {
+//     self.text = self.text[1:-1]
+//     # print(f"string lit: {self.text}")
+// }
+;
 fragment String_Character: ~["\\\n];
 fragment String_Escape:  '\\n' | '\\t' | '\\r' | '\\"'| '\\\\';
 
@@ -314,9 +316,7 @@ WS : [ \t\r\f]+ -> skip ; // skip spaces, tabs
 
 fragment ILL_ESC: '\\' ~[ntr"\\];
 
-ILLEGAL_ESCAPE: '"' (String_Character|String_Escape)* ILL_ESC {
-    self.text = self.text[1:]
-};
+ILLEGAL_ESCAPE: '"' (String_Character|String_Escape)* ILL_ESC;
 UNCLOSE_STRING: '"' (String_Character|String_Escape)* ('\n' | '\r\n'| EOF) 
 {
     if(len(self.text) >= 2 and self.text[-2] == '\r' and self.text[-1] == '\n'):
@@ -324,7 +324,7 @@ UNCLOSE_STRING: '"' (String_Character|String_Escape)* ('\n' | '\r\n'| EOF)
     elif(self.text[-1] == '\n'):
         self.text = self.text[:-1]
     else:
-        self.text = self.text[1:]
+        self.text = self.text
 }
 ;
 ERROR_CHAR: .;

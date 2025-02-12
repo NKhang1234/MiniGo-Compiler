@@ -1,0 +1,4 @@
+ func nhatKhang() {
+                x  := haha() + 6 / 3;
+                x.c[7][4] := 1 - 2;
+            }

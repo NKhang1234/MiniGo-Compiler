@@ -1,1 +1,1 @@
-var z khang = a.a.a[2].foo();
+var z nhat = a.a.a[2].foo();

@@ -1,1 +1,1 @@
-abc,<EOF>
+const,MN,=,main,(,),[,0,],+,bc,[,2,],.,b,.,b,;,<EOF>

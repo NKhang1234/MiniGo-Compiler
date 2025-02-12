@@ -1,0 +1,5 @@
+
+                    for var aa [7]int = 0; foo().a.b(); a := 6 {
+                        // loop body
+                    }
+        

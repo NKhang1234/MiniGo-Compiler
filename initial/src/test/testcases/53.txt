@@ -1,1 +1,5 @@
-func abc ( ) 
+
+            func main(x int, y int) int {}
+            func main1() [2][6] ID {}
+            func main2() {abc;}
+        

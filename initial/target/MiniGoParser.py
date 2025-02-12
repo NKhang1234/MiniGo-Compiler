@@ -279,7 +279,7 @@ def serializedATN():
         buf.write("\u0258\5^\60\2\u0258\u0259\7\62\2\2\u0259\u0083\3\2\2")
         buf.write("\2\u025a\u025b\7\23\2\2\u025b\u0085\3\2\2\2\u025c\u025d")
         buf.write("\7\22\2\2\u025d\u0087\3\2\2\2\u025e\u0264\5@!\2\u025f")
-        buf.write("\u0260\5f\64\2\u0260\u0261\7-\2\2\u0261\u0262\5@!\2\u0262")
+        buf.write("\u0260\5H%\2\u0260\u0261\7-\2\2\u0261\u0262\5@!\2\u0262")
         buf.write("\u0264\3\2\2\2\u0263\u025e\3\2\2\2\u0263\u025f\3\2\2\2")
         buf.write("\u0264\u0089\3\2\2\2\u0265\u0267\7\7\2\2\u0266\u0268\5")
         buf.write("H%\2\u0267\u0266\3\2\2\2\u0267\u0268\3\2\2\2\u0268\u008b")
@@ -5006,8 +5006,8 @@ class MiniGoParser ( Parser ):
             return self.getTypedRuleContext(MiniGoParser.FuncCallContext,0)
 
 
-        def lhs(self):
-            return self.getTypedRuleContext(MiniGoParser.LhsContext,0)
+        def expr(self):
+            return self.getTypedRuleContext(MiniGoParser.ExprContext,0)
 
 
         def DOT(self):
@@ -5042,7 +5042,7 @@ class MiniGoParser ( Parser ):
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 605
-                self.lhs(0)
+                self.expr(0)
                 self.state = 606
                 self.match(MiniGoParser.DOT)
                 self.state = 607

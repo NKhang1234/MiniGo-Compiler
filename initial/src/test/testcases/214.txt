@@ -1,1 +1,1 @@
-const Dk = [14]float{};
+const Mn = [14]float{};

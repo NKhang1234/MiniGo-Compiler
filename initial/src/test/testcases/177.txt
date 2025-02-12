@@ -1,1 +1,1 @@
-const Dk = main()[0] + bc[2].b.b;
+const MN = main()[0] + bc[2].b.b;

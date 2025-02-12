@@ -1,0 +1,1 @@
+var,c,string,;,type,Casio,struct,{,},type,Casio,struct,{,},var,f,float,;,<EOF>

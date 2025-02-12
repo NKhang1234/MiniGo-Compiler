@@ -1,1 +1,1 @@
-Unclosed string: VOTIEN
+var,abc,int,;,<EOF>
