@@ -1,5 +1,1 @@
-
-            func nhat(x int, y int) int {}
-            func nhat1() [2][3] ID {}
-            func nhat2() {}
-        
+ const NK = [ID1][ID2]int{{1, "string", {21}}, {1.21, "khang"}}; 

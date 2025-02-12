@@ -1,1 +1,7 @@
-const Mn = 1[2] + foo()[2] + ID[2].b.b;
+
+                                    func Add() {
+                                        for var i = 0; i < 10; i += 1 {
+                                            // loop body
+                                            break;
+                                        }
+                                    };

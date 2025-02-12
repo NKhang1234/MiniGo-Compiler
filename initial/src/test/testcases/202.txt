@@ -1,1 +1,7 @@
-func main({};
+
+                                    func Add() {
+                                        for index, value := range arr[2] {
+                                            var i = 2
+                                            break;
+                                        }
+                                    };

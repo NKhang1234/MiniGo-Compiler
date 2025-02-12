@@ -1,1 +1,5 @@
-const Mn = MinhNhat{name: "nhat";
+
+            func (c Calculator) khang(x int) int {return;}  
+            func (c Calculator) khang() ID {return;};
+            func (c Calculator) khang(x int, y [2]khang) {return;}                                                      
+        

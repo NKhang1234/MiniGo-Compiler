@@ -1,1 +1,1 @@
-const Mn = MinhNhat{name "nhat"};
+var z khang = a.a.a[2].foo();

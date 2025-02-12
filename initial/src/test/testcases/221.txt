@@ -1,1 +1,8 @@
-const Mn = MinhNhat{name: "nhat", age: 21, school: "hcmut",};
+    
+            type Calculator interface {
+                Add(x, y [2]ID) [2]int;
+                Subtract(a, b float, c, e int);
+                Reset()
+                SayHello(name string)
+            }
+        

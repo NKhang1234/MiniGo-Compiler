@@ -1,1 +1,1 @@
-const Mn = a[3][2];
+const NK = [true]ID{2, 3};

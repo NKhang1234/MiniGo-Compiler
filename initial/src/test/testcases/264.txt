@@ -1,1 +1,1 @@
-func main({};
+var z khang = a[2, 3]; 

@@ -1,3 +1,1 @@
-
-            func Add(x int, y int) int  {return;};
-        
+const NK = foo(1+1);

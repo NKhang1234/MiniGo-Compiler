@@ -1,1 +1,3 @@
-const Mn = [5][5]string{1, "string", {1.21, "nhat"}, {3}};
+    
+            func (c c) Add(x, c int) {}
+        

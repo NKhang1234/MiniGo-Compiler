@@ -1,4 +1,1 @@
-
-                                    func Add() {
-                                        2[1] + 2 += 2;
-                                    }
+const NK = false;

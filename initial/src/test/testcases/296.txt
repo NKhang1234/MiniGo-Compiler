@@ -1,5 +1,1 @@
-
-                                    func Add() {
-                                        return (2 + 3).b
-                                        return -1.c
-                                    }
+const NK = 2 == 2 != 2 > 2 < 2 >= 2 <= 2;

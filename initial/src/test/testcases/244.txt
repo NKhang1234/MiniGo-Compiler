@@ -1,1 +1,1 @@
- var z Mn = add(3, a);
+const NK = Person{name: "Alice", age: 30};

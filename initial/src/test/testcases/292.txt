@@ -1,6 +1,1 @@
-
-                                    func Add() {
-                                        for index, value := range arr[2] {
-                                            break;
-                                        }
-                                    };
+const NK = NHATKHANG(name: , age: 21);

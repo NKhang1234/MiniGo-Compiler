@@ -1,1 +1,1 @@
-const Mn = [5][0]string(1, "string", 3);
+const NK = [5][0]{1, "string", 3;

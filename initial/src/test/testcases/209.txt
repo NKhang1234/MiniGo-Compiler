@@ -1,1 +1,1 @@
-const Mn = [ID1][ID2]ID3{1, "string", {1.21, "nhat"}};
+ var z NK = add(1+3, 2/4, a[3][2]);

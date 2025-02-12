@@ -1,1 +1,4 @@
-const nhat = a.b() + 2
+
+                                    func Add() {
+                                       a[2+3&&2] += foo().b[2];       
+                                    };

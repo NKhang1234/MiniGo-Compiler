@@ -1,4 +1,1 @@
-
-            type Calculator interface { Subtract(a int); }
-            type Person struct {a int;}
-        
+const NK = 10.12;

@@ -1,1 +1,1 @@
-var z nhat = nhat {name: NAME{firt_name: "minh", last_name: "nhat"}, age: a[2][3]};
+ var z NK = khang.1;

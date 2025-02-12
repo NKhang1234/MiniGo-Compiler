@@ -1,6 +1,2 @@
 
-                                    func Add() {
-                                        for index, value := range 23 {
-                                            break;
-                                        }
-                                    };
+            func (c c) Add(x, c int) {return ;}

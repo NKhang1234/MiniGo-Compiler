@@ -1,12 +1,1 @@
-
-            func nhat() {
-                if (x > 10) {return;}
-                if (x > 10) {
-                  return;
-                } else if (x == 10) {
-                    var z str;
-                } else {
-                    var z ID;
-                }
-            }
-        
+func main({};

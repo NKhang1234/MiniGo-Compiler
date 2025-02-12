@@ -1,7 +1,6 @@
 
-            func nhat() {
-                for i < 10 {return;}
-                for i := 0; i < 10; i += 1 {return;}
-                for index, value := range array {return;}
-            }
-        
+                                    func Add() {
+                                        if (x.foo().b[2]) {
+                                            if (){}
+                                        }
+                                    };

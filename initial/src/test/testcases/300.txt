@@ -1,6 +1,1 @@
-
-            func (p Person) Greet() string {
-                if (1) {return;}
-                else if (1)
-                {}
-            };  
+var z NK = ID {a: 2, b: 2 + 2 + ID {a: 2}};

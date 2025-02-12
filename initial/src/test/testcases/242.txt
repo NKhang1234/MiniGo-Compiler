@@ -1,1 +1,6 @@
- var z Mn = add(3 a);
+
+                                    func Add() {
+                                        if (1) {return;}
+                                        else if(2) {return string}
+                                        else if(3) {reutrn int;}
+                                    }

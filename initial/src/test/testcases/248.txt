@@ -1,1 +1,1 @@
-const Mn = ca.foo(132) + b.c[2];
+var z khang = KHANG {name: NAME{firt_name: "nhat", last_name: "khang"}, age: a[2][3]};

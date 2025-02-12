@@ -1,6 +1,1 @@
-
-                                    func Add() {
-                                        if (x.foo().b[2]) {
-                                            if (){}
-                                        }
-                                    };
+const NK = NHATKHANG{name: "khang";

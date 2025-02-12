@@ -1,1 +1,11 @@
- const Mn = [ID1][ID2]int{{1, "string", {21}}, {1.21, "nhat"}}; 
+    
+            func khang() {                           
+                for i < 10 {break;}
+                break;
+                continue;
+                return 1;
+                return
+                foo(2 + x, 4 / y); m.goo();                        
+             }
+                                        
+        

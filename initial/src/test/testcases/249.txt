@@ -1,1 +1,8 @@
-const Mn = a.a.foo();
+
+                                        
+            func (c c) Add(x int)  {return;}
+            
+            func Add(x int, y int) {return;}; var c int;
+            
+            var c int; type Calculator struct{a int;} type Calculator struct {} var c int;
+        

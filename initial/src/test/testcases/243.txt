@@ -1,1 +1,2 @@
- var z Mn = add(a, c, 2);
+func foo () {
+        };

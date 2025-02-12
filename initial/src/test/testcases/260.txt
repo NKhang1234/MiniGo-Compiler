@@ -1,1 +1,1 @@
-var y;
+ var z NK = add(3, a);

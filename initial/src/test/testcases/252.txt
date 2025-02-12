@@ -1,1 +1,14 @@
-var z nhat = a.a.a[2].foo();
+
+            func (p Person) Greet() string {
+                for i := 0
+                    i < 10
+                    i += 1 {
+                    return
+                }
+                for i := 0
+                    i < 10
+                    i += 1 
+                {
+                    return
+                }
+            };  

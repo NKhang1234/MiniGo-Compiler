@@ -1,1 +1,6 @@
-var float;
+
+                                    func Add() {
+                                        for index, value := range arr {
+                                            break;
+                                        }
+                                    };

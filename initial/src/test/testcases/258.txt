@@ -1,2 +1,1 @@
-
-            func (c c) Add(x, c int) {return ;}
+const NK = NHATKHANG{name: "khang" age: 21};

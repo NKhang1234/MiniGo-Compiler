@@ -1,3 +1,1 @@
-
-            func (c c) Add(x, c int) {}
-        
+const NK = [5][0]{1, "string", 3};

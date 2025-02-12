@@ -1,6 +1,5 @@
 
-                                    func Add() {
-                                        if (1) {return;}
-                                        else if(2) {return string}
-                                        else if(3) {reutrn int;}
-                                    }
+            var x int = foo() + 3 / 4;
+            var y = "Hello" / 4
+            var z str;
+        

@@ -1,1 +1,1 @@
-const Mn = a[3];
+const NK = NHATKHANG{name "khang"};
