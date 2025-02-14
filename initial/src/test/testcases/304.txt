@@ -1,1 +1,1 @@
-var int;
+func main({};

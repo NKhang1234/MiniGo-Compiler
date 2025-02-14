@@ -14,6 +14,9 @@ class LexerSuite(unittest.TestCase):
     def test_keyword_func(self):
         """test keyword func"""
         self.assertTrue(TestLexer.checkLexeme("""func abc ( ) ""","""func,abc,(,),<EOF>""",113))
+    def test_Phuc(self):
+        """test keyword func"""
+        self.assertTrue(TestLexer.checkLexeme("""/*level1 /*lv2 /*lv3 */*/*/ code /*ff*/""","""code,<EOF>""",1000))
 #------------------------------------------MYSELF TEST -------------------------------------------------------------
     def test_01(self):
         """test keyword"""

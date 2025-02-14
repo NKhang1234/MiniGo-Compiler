@@ -38,20 +38,20 @@ decl: structDecl | interfaceDecl | varDecl | constDecl | funcDecl | methodStruct
 // Type
 typee: (INT | FLOAT | BOOLEAN | STRING | arrType | ID); // ID is notified for 'struct' or 'interface'
 arrType:  dimenList (INT | FLOAT | BOOLEAN | STRING | ID); // ID is notified for 'struct' or 'interface'
-dimenList: '[' (INT_LIT | ID) ']' dimenList |  ('[' (INT_LIT | ID) ']'); // ID is notified for 'constant'
+dimenList: OPEN_SQUARE (INT_LIT | ID) CLOSE_SQUARE dimenList |  (OPEN_SQUARE (INT_LIT | ID) CLOSE_SQUARE); // ID is notified for 'constant'
 
 // Struct Declare
-structDecl: TYPE ID STRUCT '{' structBody '}' SEMICOLON;
+structDecl: TYPE ID STRUCT OPEN_CURVE structBody CLOSE_CURVE SEMICOLON;
 structBody: listField;
 listField: field listField | field;
 field: ID typee SEMICOLON;
 
 // Interface Declare
-interfaceDecl: TYPE ID INTERFACE '{' interfaceBody '}' SEMICOLON;
+interfaceDecl: TYPE ID INTERFACE OPEN_CURVE interfaceBody CLOSE_CURVE SEMICOLON;
 interfaceBody: listMethod;
 
 listMethod: method listMethod | method;
-method: ID '(' paramList ')' typee? SEMICOLON;
+method: ID OPEN_ROUND paramList CLOSE_ROUND typee? SEMICOLON;
 
 paramList: paramPrime | ;
 paramPrime: param COMMA paramPrime | param;
@@ -67,17 +67,17 @@ constDecl: CONST ID ASSIGN (literalConst | expr) SEMICOLON;
 literalConst: (INT_LIT | FLOAT_LIT | STRING_LIT | TRUE | FALSE | NIL);
 
 // Function Declare
-funcDecl: 'func' ID '(' paramList ')' typee? '{' funcBody '}' SEMICOLON;
+funcDecl: 'func' ID OPEN_ROUND paramList CLOSE_ROUND typee? OPEN_CURVE funcBody CLOSE_CURVE SEMICOLON;
 funcBody: statementList;
 
 // Method for Struct Declare
-methodStructDecl: 'func' '(' ID ID ')' ID '(' paramList')' typee? '{' funcBody '}' SEMICOLON; // The second 'ID' is 'struct' and 'interface'
+methodStructDecl: 'func' OPEN_ROUND ID ID CLOSE_ROUND ID OPEN_ROUND paramList CLOSE_ROUND typee? OPEN_CURVE funcBody CLOSE_CURVE SEMICOLON; // The second 'ID' is 'struct' and 'interface'
 
 // ---------------------------- Expression ---------------------------------------- //
 
 /* // Array Accessing Element
 arrAccess: exprA positionList;
-positionList: '[' expr ']' positionList | '[' expr ']'; // Array Accessing Element can be described at expr6
+positionList: OPEN_SQUARE expr CLOSE_SQUARE positionList | OPEN_SQUARE expr CLOSE_SQUARE; // Array Accessing Element can be described at expr6
 
 exprA: exprA OR exprA1 | exprA1;
 exprA1: exprA1 AND exprA2 | exprA2;
@@ -85,8 +85,8 @@ exprA2: exprA2 (EQUAL | NOT_EQUAL | LESS_THAN | LESS_EQUAL | GREATER_THAN | GREA
 exprA3: exprA3 (PLUS | MINUS) exprA4 | exprA4;
 exprA4: exprA4 (MULTI | DIV | MODULO) exprA5 | exprA5;
 exprA5: ('!' | '-') exprA5 | exprA6;
-exprA6: '(' exprA ')' | operandA;
-operandA: ID ('{' structElList '}' | ) | literal | funcCall | ID; */
+exprA6: OPEN_ROUND exprA CLOSE_ROUND | operandA;
+operandA: ID (OPEN_CURVE structElList CLOSE_CURVE | ) | literal | funcCall | ID; */
 
 /* // Struct Field Accessing
 structAccess: refList DOT ID; // Struct Field Accessing can be described at expr6 
@@ -98,8 +98,8 @@ exprS2: exprS2 (EQUAL | NOT_EQUAL | LESS_THAN | LESS_EQUAL | GREATER_THAN | GREA
 exprS3: exprS3 (PLUS | MINUS) exprS4 | exprS4;
 exprS4: exprS4 (MULTI | DIV | MODULO) exprS5 | exprS5;
 exprS5: ('!' | '-') exprS5 | exprS6;
-exprS6: '(' exprS ')' | operandS;
-operandS: literal | arrAccess | funcCall | ID ('{' structElList '}' | ) | ID; */
+exprS6: OPEN_ROUND exprS CLOSE_ROUND | operandS;
+operandS: literal | arrAccess | funcCall | ID (OPEN_CURVE structElList CLOSE_CURVE | ) | ID; */
 
 
 /* // Array and Struct Access Composite
@@ -108,30 +108,30 @@ accessList: positionList | structAccess; */
 
 // Array Literal
 arrLit: arrType arrBody;
-arrBody: '{' elementList '}';
+arrBody: OPEN_CURVE elementList CLOSE_CURVE;
 elementList: element COMMA elementList | element;
 element: literalConst | structLit | arrBody;
 // Struct Literal
-structLit: ID '{' structElList '}';
+structLit: ID OPEN_CURVE structElList CLOSE_CURVE;
 structElList: structELPrime | ;
 structELPrime: structEL COMMA structELPrime | structEL;
 structEL:ID COLON expr;
 
 // Function call
-funcCall: ID '(' argumentList ')';
+funcCall: ID OPEN_ROUND argumentList CLOSE_ROUND;
 argumentList: argumentListPrime | ;
 argumentListPrime: argument COMMA argumentListPrime | argument;
 argument: expr | arrBody;
 
 /* // Method Call
-methodCall: exprM DOT ID '(' argumentList ')'; // Method Call is a func call with DOT => Can be described in expr6
+methodCall: exprM DOT ID OPEN_ROUND argumentList CLOSE_ROUND; // Method Call is a func call with DOT => Can be described in expr6
 exprM: exprM OR exprM1 | exprM1;
 exprM1: exprM1 AND exprM2 | exprM2;
 exprM2: exprM2 (EQUAL | NOT_EQUAL | LESS_THAN | LESS_EQUAL | GREATER_THAN | GREATER_EQUAL) exprM3 | exprM3;
 exprM3: exprM3 (PLUS | MINUS) exprM4 | exprM4;
 exprM4: exprM4 (MULTI | DIV | MODULO) exprM5 | exprM5;
 exprM5: ('!' | '-') exprM5 | exprM6;
-exprM6: '(' exprM ')' | operandM;
+exprM6: OPEN_ROUND exprM CLOSE_ROUND | operandM;
 operandM: literal | arrStructAccess | ID; */
 
 // Expression
@@ -141,9 +141,9 @@ expr2: expr2 (EQUAL | NOT_EQUAL | LESS_THAN | LESS_EQUAL | GREATER_THAN | GREATE
 expr3: expr3 (PLUS | MINUS) expr4 | expr4;
 expr4: expr4 (MULTI | DIV | MODULO) expr5 | expr5;
 expr5: ('!' | '-') expr5 | expr6;
-expr6: expr6 '[' expr ']'| expr6 DOT ID | expr6 DOT funcCall| expr7;// access array | struct access | method call
-expr7: '(' expr ')' | operand;
-operand: literal | funcCall | ID ('{' structElList '}' | ) | ID;
+expr6: expr6 OPEN_SQUARE expr CLOSE_SQUARE| expr6 DOT ID | expr6 DOT funcCall| expr7;// access array | struct access | method call
+expr7: OPEN_ROUND expr CLOSE_ROUND | operand;
+operand: literal | funcCall | ID (OPEN_CURVE structElList CLOSE_CURVE | ) | ID;
 
 literal: literalConst | arrLit | structLit;
 
@@ -157,29 +157,29 @@ constDeclStatement: CONST ID ASSIGN (literalConst | expr);
 
 // Assignemt Statement
 assignment: lhs assignOperator rhs;
-lhs: lhs '[' expr ']'| lhs DOT ID | ID;
+lhs: lhs OPEN_SQUARE expr CLOSE_SQUARE| lhs DOT ID | ID;
 assignOperator: ASSIGN1 | PLUS_EQUAL| MINUS_EQUAL | MULTI_EQUAL | DIV_EQUAL | MODULO_EQUAL;
 rhs: expr;
 
 // If Statement
-ifStatement: IF '(' expr ')' '{' statementList '}' elifList (ELSE '{' statementList '}')?;
+ifStatement: IF OPEN_ROUND expr CLOSE_ROUND OPEN_CURVE statementList CLOSE_CURVE elifList (ELSE OPEN_CURVE statementList CLOSE_CURVE)?;
 
 elifList: eliff elifList | ;
-eliff: ELSE IF '(' expr ')' '{' statementList '}';
+eliff: ELSE IF OPEN_ROUND expr CLOSE_ROUND OPEN_CURVE statementList CLOSE_CURVE;
 
 // For Statememt
 forStatement: forBasic | forInitial | forRange;
 
-forBasic: FOR expr '{' statementList '}';
+forBasic: FOR expr OPEN_CURVE statementList CLOSE_CURVE;
 
-forInitial: FOR initialization SEMICOLON condition SEMICOLON update '{' statementList '}';
+forInitial: FOR initialization SEMICOLON condition SEMICOLON update OPEN_CURVE statementList CLOSE_CURVE;
 initialization: assignScalar | varDeclInitial;
 varDeclInitial: VAR ID typee? ASSIGN expr;
 condition: expr;
 update: assignScalar;
 assignScalar: ID assignOperator expr;
 
-forRange: FOR (ID | '_') COMMA ID ASSIGN1 RANGE lhs '{' statementList '}';
+forRange: FOR (ID | '_') COMMA ID ASSIGN1 RANGE lhs OPEN_CURVE statementList CLOSE_CURVE;
 
 // Break Statememt
 breakStatement: BREAK;
