@@ -216,7 +216,7 @@ def serializedATN():
         584,3,126,63,0,584,125,1,0,0,0,585,586,5,53,0,0,586,587,3,102,51,
         0,587,588,3,70,35,0,588,127,1,0,0,0,589,590,5,4,0,0,590,591,7,8,
         0,0,591,592,5,51,0,0,592,593,5,53,0,0,593,594,5,37,0,0,594,595,5,
-        18,0,0,595,596,3,100,50,0,596,597,5,47,0,0,597,598,3,92,46,0,598,
+        18,0,0,595,596,3,70,35,0,596,597,5,47,0,0,597,598,3,92,46,0,598,
         599,5,48,0,0,599,129,1,0,0,0,600,601,5,17,0,0,601,131,1,0,0,0,602,
         603,5,16,0,0,603,133,1,0,0,0,604,610,3,62,31,0,605,606,3,70,35,0,
         606,607,5,43,0,0,607,608,3,62,31,0,608,610,1,0,0,0,609,604,1,0,0,
@@ -4401,8 +4401,8 @@ class MiniGoParser ( Parser ):
         def RANGE(self):
             return self.getToken(MiniGoParser.RANGE, 0)
 
-        def lhs(self):
-            return self.getTypedRuleContext(MiniGoParser.LhsContext,0)
+        def expr(self):
+            return self.getTypedRuleContext(MiniGoParser.ExprContext,0)
 
 
         def OPEN_CURVE(self):
@@ -4446,7 +4446,7 @@ class MiniGoParser ( Parser ):
             self.state = 594
             self.match(MiniGoParser.RANGE)
             self.state = 595
-            self.lhs(0)
+            self.expr(0)
             self.state = 596
             self.match(MiniGoParser.OPEN_CURVE)
             self.state = 597

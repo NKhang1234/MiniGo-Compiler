@@ -179,7 +179,7 @@ condition: expr;
 update: assignScalar;
 assignScalar: ID assignOperator expr;
 
-forRange: FOR (ID | '_') COMMA ID ASSIGN1 RANGE lhs OPEN_CURVE statementList CLOSE_CURVE;
+forRange: FOR (ID | '_') COMMA ID ASSIGN1 RANGE expr OPEN_CURVE statementList CLOSE_CURVE;
 
 // Break Statememt
 breakStatement: BREAK;

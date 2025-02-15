@@ -63,7 +63,7 @@ class ParserSuite(unittest.TestCase):
                         }
                     }
                     """
-        expect = "Error on line 2 col 43: 10"
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 203))
 
     def test_204(self):
@@ -731,11 +731,3 @@ class ParserSuite(unittest.TestCase):
         expect = "Error on line 1 col 31: ="
         self.assertTrue(TestParser.checkParser(input, expect, 300))
 
-
-    
-
-    
-
-
-    
-    
