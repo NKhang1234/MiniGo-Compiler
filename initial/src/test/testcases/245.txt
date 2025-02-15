@@ -1,5 +1,1 @@
-
-            func khang(x int, y int) int {}
-            func khang1() [2][3] ID {}
-            func khang2() {}                                       
-        
+func invalidFunc(a, b, int c) string { return "test"; }

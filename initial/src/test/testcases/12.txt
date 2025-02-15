@@ -1,1 +1,1 @@
-mAin MaIN MAIN
+func Func fUnc fuNce

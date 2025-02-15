@@ -1,1 +1,1 @@
- var z NK = add(3 a);
+ var z fffff = sub(t int, f string);

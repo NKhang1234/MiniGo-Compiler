@@ -1,1 +1,1 @@
-const NK = NHATKHANG{"khang"};
+const aaaa = Table{name: "HCMUT", material: "wood"};

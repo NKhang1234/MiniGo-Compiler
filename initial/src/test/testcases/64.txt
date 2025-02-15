@@ -1,1 +1,1 @@
-23main
+"Hello, world!" "String with \" escape"

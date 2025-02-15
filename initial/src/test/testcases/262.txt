@@ -1,1 +1,1 @@
-var z khang = a.a.a[2].c[2].foo(1,);
+var x = [5]int{1,2,3,4,5,6};

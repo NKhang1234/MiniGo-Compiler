@@ -1,1 +1,6 @@
-var z nhatKhang = a[2][3][a + 2 / d && true];
+func Process() {
+                        for i, v := range 10 {
+                            putInt(v);
+                        }
+                    }
+                    

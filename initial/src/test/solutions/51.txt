@@ -1,1 +1,1 @@
-Unclosed string: "This is a string  
+Unclosed string: "This is a string  without closing

@@ -1,1 +1,1 @@
- const NK = [ID1][ID2]int{{1, "string", {21}}, {1.21, "khang"}}; 
+const data = Person{name: "Alice", age: 25};

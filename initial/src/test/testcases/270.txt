@@ -1,1 +1,1 @@
-const NK = 1 || 2 && c + 3 / 2 - -1;
+func broken() { return (5 + 3 * ; };

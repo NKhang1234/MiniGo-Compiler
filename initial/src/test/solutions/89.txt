@@ -1,1 +1,1 @@
-.,15,.,e20,<EOF>
+package,main,;,import,"fmt",<EOF>

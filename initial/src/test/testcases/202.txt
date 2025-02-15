@@ -1,7 +1,7 @@
 
-                                    func Add() {
-                                        for index, value := range arr[2] {
-                                            var i = 2
-                                            break;
-                                        }
-                                    };
+                func Process() {
+                    for i, v := range numbers {
+                        putInt(v);
+                    }
+                }
+                

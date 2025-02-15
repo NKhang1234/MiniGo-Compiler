@@ -1,1 +1,1 @@
-a,*,*,b,;,a,ErrorToken ^
+do,{,x,+,+,;,},while,(,x,<,100,),;,<EOF>

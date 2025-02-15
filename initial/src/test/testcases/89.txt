@@ -1,1 +1,1 @@
-.15 .e20
+package main; import "fmt"

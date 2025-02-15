@@ -1,1 +1,1 @@
-func,haha,<EOF>
+func,haha,hoho,hehe,<EOF>

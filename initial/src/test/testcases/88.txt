@@ -1,1 +1,1 @@
-0b000 0b011 0b0010
+interface Shape { area() float64 }

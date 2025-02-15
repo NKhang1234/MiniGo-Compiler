@@ -1,1 +1,1 @@
-int,float,string,boolean,<EOF>
+func,foo,(,),int,{,return,5,;,},<EOF>

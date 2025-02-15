@@ -1,4 +1,1 @@
- /* Multi line comment
-                    This is first comment
-                    This is second comment */
-                
+"String with newline \n and tab \t"

@@ -1,1 +1,1 @@
-var,c,string,;,type,Casio,struct,{,},type,Casio,struct,{,},var,f,float,;,<EOF>
+var,name,string,;,type,Device,struct,{,},;,type,Device,struct,{,},;,var,price,float64,;,<EOF>

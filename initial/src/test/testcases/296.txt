@@ -1,1 +1,1 @@
-const NK = 2 == 2 != 2 > 2 < 2 >= 2 <= 2;
+const missingQuote = "This is missing an end quote" 

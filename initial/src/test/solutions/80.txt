@@ -1,1 +1,1 @@
-for,(,),<EOF>
+try,{,riskyCode,(,),;,},catch,(,e,),{,handleError,(,e,),;,},<EOF>

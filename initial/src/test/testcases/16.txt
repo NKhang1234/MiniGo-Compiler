@@ -1,1 +1,1 @@
- for i >= 24 { body }
+ for z < 2 { i += 1 }

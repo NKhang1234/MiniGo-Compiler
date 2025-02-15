@@ -1,1 +1,1 @@
-var y;
+var result = calculate(10, 20, 30);

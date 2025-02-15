@@ -1,1 +1,1 @@
-abc
+switch mode { case 'A': actionA(); case 'B': actionB(); default: exit(); }

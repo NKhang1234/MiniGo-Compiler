@@ -1,1 +1,1 @@
-0o123 0O456
+struct Point { x, y int }

@@ -1,2 +1,1 @@
- "This is 
-                    a string"  
+return funcCall(a, b, c);

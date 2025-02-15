@@ -1,1 +1,1 @@
- var z NK = add(3, a);
+func invalidForLoop() { for var i = 0; i < 10 i++ { println(i); } };

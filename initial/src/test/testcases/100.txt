@@ -1,1 +1,1 @@
-a.b == 3 || c === d || c +== a || b -=== a
+func (p Processor) Execute() int { return p.data * 2; }

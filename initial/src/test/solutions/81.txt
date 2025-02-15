@@ -1,1 +1,1 @@
-10.e5,<EOF>
+func,sum,(,a,int,,,b,int,),int,{,return,a,+,b,;,},<EOF>

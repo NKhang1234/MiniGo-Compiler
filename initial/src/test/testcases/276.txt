@@ -1,1 +1,1 @@
-const NK = 10.12;
+func incorrect() { for var i = 0; i < 10 i++ { }; };

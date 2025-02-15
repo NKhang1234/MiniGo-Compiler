@@ -1,1 +1,6 @@
-const NK = [5][0]string(1, "string", 3);
+func PrintPersons() {
+                        var people [2]Person = {Person{name: "Alice", age: 25}, Person{name: "Bob", age: 30}};
+                        for _, p := range people {
+                            putStringLn(p.name);
+                        }
+                    }

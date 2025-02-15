@@ -1,6 +1,1 @@
-
-                                    func Add() {
-                                        for index, value := range arr {
-                                            break;
-                                        }
-                                    };
+const pi = 3.14159;

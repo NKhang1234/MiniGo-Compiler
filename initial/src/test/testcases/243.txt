@@ -1,2 +1,1 @@
-func foo () {
-        };
+const y = [3]int{1, 2, 3};

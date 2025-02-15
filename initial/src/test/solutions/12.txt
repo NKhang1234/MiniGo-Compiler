@@ -1,1 +1,1 @@
-mAin,MaIN,MAIN,<EOF>
+func,Func,fUnc,fuNce,<EOF>

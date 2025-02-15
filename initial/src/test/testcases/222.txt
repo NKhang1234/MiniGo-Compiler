@@ -1,1 +1,4 @@
-var z khang = a.a.a[2].foo();
+func GetNumbers() [3]int {
+                        return {1, 2, 3};
+                    }
+                    

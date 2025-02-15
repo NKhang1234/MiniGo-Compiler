@@ -1,1 +1,1 @@
-main23,<EOF>
+ErrorToken '

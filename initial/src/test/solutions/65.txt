@@ -1,1 +1,1 @@
-a,:=,c,;,a,+=,3,;,b,-=,c,;,<EOF>
+true,false,nil,<EOF>

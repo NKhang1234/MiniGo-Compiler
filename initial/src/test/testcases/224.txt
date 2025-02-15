@@ -1,5 +1,6 @@
 
-        type Person struct {
+        type Computer struct {
             name string;
-            age int;                                                    
+            model string
+            brand string;                                                    
         }      

@@ -1,2 +1,1 @@
-
-            func (c c) Add(x, c int) {return ;}
+var sample = [4]int{10, 20, 30, 40};

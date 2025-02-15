@@ -1,1 +1,1 @@
-const khang = a.b() + 2;
+func conditional() { if (x > 10) return; else return; };

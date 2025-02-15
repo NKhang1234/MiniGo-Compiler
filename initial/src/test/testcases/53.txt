@@ -1,5 +1,5 @@
 
-            func main(x int, y int) int {}
-            func main1() [2][6] ID {}
-            func main2() {abc;}
+            func calculate(x int, y string) string {}  
+            func transform() [5][7] StructType {}  
+            func analyze() {run();}
         

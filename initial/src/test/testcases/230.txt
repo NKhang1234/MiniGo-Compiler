@@ -1,1 +1,1 @@
-var z khang = a >= 2 <= "string" > a[2][3] < ID{A: 2} >= [2]S{2};
+var z hoho = a.b[3].c.d.e[43]; 

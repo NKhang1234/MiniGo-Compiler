@@ -1,1 +1,1 @@
-Unclosed string: "This is a string 
+var,set,map,[,string,],int,<EOF>

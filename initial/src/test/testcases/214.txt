@@ -1,4 +1,6 @@
 
-            type Calculator interface { Subtract(a int); }
-            type Person struct {a int;}
+            type Person struct {
+                name string;
+                age int;
+            }
         

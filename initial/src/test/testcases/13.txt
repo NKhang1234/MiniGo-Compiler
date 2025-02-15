@@ -1,7 +1,7 @@
 
-            type Casio interface {
-                Sub(x, y int) int;
-                Subtract(a, b float, c int) [9]array;
-                Reset()
-                Show(name string);
+            type Sharp interface {
+                Add(x, y int) int
+                Multiply(a, b float64, c int) (result float64)
+                Clear()
+                Display(model string) string
             }

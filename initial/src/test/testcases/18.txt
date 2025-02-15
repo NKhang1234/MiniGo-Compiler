@@ -1,5 +1,5 @@
 
-                    for var aa [7]int = 0; foo().a.b(); a := 6 {
-                        // loop body
-                    }
+                for var bb [5]int = [5]int{1.1, 2.2, 3.3, 4.4, 5.5}; bar().x.y(); z := 10 {
+                    // loop body
+                }
         

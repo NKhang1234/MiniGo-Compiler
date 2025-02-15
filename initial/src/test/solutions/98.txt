@@ -1,1 +1,1 @@
-abc,<EOF>
+switch,mode,{,case,ErrorToken '

@@ -1,4 +1,1 @@
-
-                                    func Add() {
-                                        a.foo() += 2;
-                                    }
+const wrongSyntax = [4]char{"a","b","c"};

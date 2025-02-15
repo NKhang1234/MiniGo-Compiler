@@ -1,1 +1,1 @@
-0o123,0O456,<EOF>
+struct,Point,{,x,,,y,int,},<EOF>

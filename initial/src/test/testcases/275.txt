@@ -1,1 +1,1 @@
-const NK = int{"khang"};
+var nested = Data{key: [2]int{5, 10}, value: 20};

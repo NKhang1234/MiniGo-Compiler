@@ -1,1 +1,1 @@
-func,Add,(,),{,return,(,2,+,3,),.,b,;,return,-,1.,c,;,},<EOF>
+class,MyClass,{,var,x,:,int,;,},<EOF>

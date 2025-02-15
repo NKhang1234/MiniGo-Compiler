@@ -1,1 +1,1 @@
-type,nhatKhang,struct,{,nhatKhang,string,;,nhatKhang,[,5,],[,4,],array,;,},;,<EOF>
+go,startProcess,(,),<EOF>

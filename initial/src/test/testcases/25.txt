@@ -1,1 +1,1 @@
- for index, value := range array { }
+ for pos, num := range numbers { }

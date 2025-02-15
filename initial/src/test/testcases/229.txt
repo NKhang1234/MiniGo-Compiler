@@ -1,1 +1,1 @@
- var z NK = khang.name.first_name;
+ var z testAccess = HCMUT.CSE.ComputerScience.PPL;

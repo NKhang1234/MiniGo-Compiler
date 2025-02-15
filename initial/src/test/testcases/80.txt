@@ -1,1 +1,1 @@
-for()
+try { riskyCode(); } catch (e) { handleError(e); }

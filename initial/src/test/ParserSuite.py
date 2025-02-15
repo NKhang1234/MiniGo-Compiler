@@ -38,52 +38,76 @@ class ParserSuite(unittest.TestCase):
 
     def test_201(self):
         input = """
-                                    func Add() {
-                                        if (x.foo().b[2]) {
-                                            if (true){return; } else {return; }
-
-                                        } else if(2) {return; 
-                                        }
-                                    };"""
+                func add(a int, b int) int {
+                    return a + b
+                }
+                """
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 201))
 
     def test_202(self):
         input = """
-                                    func Add() {
-                                        for index, value := range arr[2] {
-                                            var i = 2
-                                            break;
-                                        }
-                                    };"""
+                func Process() {
+                    for i, v := range numbers {
+                        putInt(v);
+                    }
+                }
+                """
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input,expect, 202))
 
     def test_203(self):
-        input = "var z nhatKhang = a[2][3][a + 2 / d && true];"
-        expect = "successful"
+        input = """func Process() {
+                        for i, v := range 10 {
+                            putInt(v);
+                        }
+                    }
+                    """
+        expect = "Error on line 2 col 43: 10"
         self.assertTrue(TestParser.checkParser(input, expect, 203))
 
     def test_204(self):
-        input = "const khang = a.b() + 2"
-        expect = "Error on line 1 col 24: <EOF>"
+        input = """func Calculate() {
+                        var x =;
+                    }
+                    """
+        expect = "Error on line 2 col 32: ;"
         self.assertTrue(TestParser.checkParser(input, expect, 204))
 
     def test_205(self):
-        input = "const NK = a[3];"
+        input = """func Compute() {
+                        for i := 0; i < 3; i += 1 {
+                            for j := 0; j < 2; j += 1 {
+                                putInt(i * j);
+                            }
+                        }
+                    }
+                    """
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input,expect, 205))
 
     def test_206(self):
-        input = "const NK = [5][5]string{1, \"string\", {1.21, \"khang\"}, {3}};"
-        expect = "successful"
+        input = """func LoopError() {
+                        for ;; {
+                            putString("Infinite Loop");
+                        }
+                    }
+                    """
+        expect = "Error on line 2 col 29: ;"
         self.assertTrue(TestParser.checkParser(input , expect, 206))
 
     def test_207(self):
         input = """    
-            func (c c) Add(x, c int) {}
+            func ExitLoop() {
+                for i := 0; i < 10; i += 1 {
+                    if i == 5 {
+                        break;
+                    }
+                }
+            }
+
         """
-        expect = "Error on line 2 col 39: }"
+        expect = "Error on line 4 col 24: i"
         self.assertTrue(TestParser.checkParser( input, expect, 207))
 
     def test_208(self):
@@ -102,105 +126,158 @@ class ParserSuite(unittest.TestCase):
         self.assertTrue(TestParser.checkParser( input, expect, 208))
 
     def test_209(self):
-        input = " var z NK = add(1+3, 2/4, a[3][2]);" 
+        input = """func test() {
+                        break;
+                    };"""
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input,expect, 209))
 
     def test_210(self):
-        input = " var z NK = add();" 
-        expect = "successful"
+        input = """func SkipEven() {
+                        for i := 0; i < 10; i += 1 {
+                            if i % 2 == 0 {
+                                continue;
+                            }
+                            putInt(i);
+                        }
+                    }
+                    """ 
+        expect = "Error on line 3 col 32: i"
         self.assertTrue(TestParser.checkParser(input,expect, 210))
 
     def test_211(self):
-        input = " var z NK = add();" 
+        input = """func hehe() {
+                        continue;
+                    }
+                    
+                    """ 
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input,expect, 211))
 
     def test_212(self):
-        input = "const NK = [10.]ID{2, 3};"
-        expect = "Error on line 1 col 13: 10."
+        input = """func PrintArray() {
+                        var arr [3]int = {1, 2, 3};
+                        for _, value := range arr {
+                            putInt(value);
+                        }
+                    }
+                    """
+        expect = "Error on line 2 col 42: {"
         self.assertTrue(TestParser.checkParser(input, expect, 212))
 
-    # def test_213(self):
-    #     input = " var z NK = khang..name;" 
-    #     expect = "Error on line 1 col 19: ."
-    #     self.assertTrue(TestParser.checkParser(input,expect, 213))
+    def test_213(self):
+        input = """func PrintArray() {
+                        for _, value := range arr {
+                            putInt(value);
+                        }
+                    }
+                    """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect, 213))
 
     def test_214(self):
         input = """
-            type Calculator interface { Subtract(a int); }
-            type Person struct {a int;}
+            type Person struct {
+                name string;
+                age int;
+            }
         """
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 214))
 
     def test_215(self):
-        input = "const NK = [5][0]string(1, \"string\", 3);"
-        expect = "Error on line 1 col 24: ("
+        input = """func PrintPersons() {
+                        var people [2]Person = {Person{name: "Alice", age: 25}, Person{name: "Bob", age: 30}};
+                        for _, p := range people {
+                            putStringLn(p.name);
+                        }
+                    }""" 
+        expect = "Error on line 2 col 48: {"
         self.assertTrue(TestParser.checkParser(input , expect, 215))
 
     def test_216(self):
-        input = "const NK = [5][0]{1, \"string\", 3;"
-        expect = "Error on line 1 col 18: {"
+        input = """func AccessError() {
+                        var p Person;
+                        putStringLn(p.name); // Uninitialized field
+                    }"""
+        expect = "Error on line 4 col 22: <EOF>"
         self.assertTrue(TestParser.checkParser(input , expect, 216))
 
     def test_217(self):
-        input = "const NK = [5][0]string{1, \"string\"};"
+        input = """func Sum(a int, b int) int {
+                        return a + b;
+                    }
+                    """
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input , expect, 217))
 
     def test_218(self):
-        input = "const NK = true;"
+        input = """
+                func Main() {
+                    var result int = Sum(5, 3);
+                    putInt(result);
+                }
+                """
         expect = "successful"
         self.assertTrue(TestParser.checkParser( input,expect, 218))
 
     def test_219(self):
         input = """    
-            func khang() {
-                for i < 10 {return;}
-                for i := 0; i < 10; i += 1 {return;}
-                for index, value := range array {return;}
+            func Main() {
+                var result int = Sum(5);
             }
         """
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input ,expect, 219))
 
     def test_220(self):
-        input = """const a = (-1).c;"""
+        input = """func GetNumbers() [3]int {
+                        return [3]int{1, 2, 3};
+                    };"""
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 220))
 
     def test_221(self):
         input = """    
-            type Calculator interface {
-                Add(x, y [2]ID) [2]int;
-                Subtract(a, b float, c, e int);
-                Reset()
-                SayHello(name string)
+            func Main() {
+                var arr [3]int = GetNumbers();
             }
         """
         expect = "successful"
         self.assertTrue(TestParser.checkParser( input, expect, 221))
 
     def test_222(self):
-        input = "var z khang = a.a.a[2].foo();"
-        expect = "successful"
+        input = """func GetNumbers() [3]int {
+                        return {1, 2, 3};
+                    }
+                    """
+        expect = "Error on line 2 col 32: {"
         self.assertTrue(TestParser.checkParser(input, expect, 222))
 
     def test_223(self):
         input = """
-            func (c Calculator) khang(x int) int {return;}  
-            func (c Calculator) khang() ID {return;};
-            func (c Calculator) khang(x int, y [2]khang) {return;}                                                      
+            func CheckNumbers(x int) {
+                if x > 0 {
+                    if x % 2 == 0 {
+                        putStringLn("Positive Even");
+                    } else {
+                        putStringLn("Positive Odd");
+                    }
+                } else {
+                    putStringLn("Non-Positive");
+                }
+            }
+                                                     
         """
-        expect = "successful"
+        expect = "Error on line 3 col 20: x"
         self.assertTrue(TestParser.checkParser(input,expect, 223))
 
     def test_224(self):
         input = """
-        type Person struct {
+        type Computer struct {
             name string;
-            age int;                                                    
+            model string
+            brand string;                                                    
         }      
 """
         expect = "successful"
@@ -208,538 +285,452 @@ class ParserSuite(unittest.TestCase):
 
     def test_225(self):
         input = """    
-            func khang() {
-                var x int = foo() + 3 / 4;
-                var y = "Hello" / 4;   
-                var z str;
+            func khangKhang() {
+                var m int = Computer.arr[0] + 3 / 4;
+                var n = "Hello" / b[78];   
+                var o float;
                                         
-                const khang = a.b() + 2;
+                const khang = Table.fall + 5;
             }                                       
         """
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input,expect, 225))
 
     def test_226(self):
-        input = "const NK = NHATKHANG{name: };"
-        expect = "Error on line 1 col 28: }"
+        input = "const hehe = Bloom{age: 21, name: \"khang\"};"
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 226))
 
     def test_227(self):
-        input = "const NK = [14]float{};"
-        expect = "Error on line 1 col 22: }"
+        input = "const hoho = [14]float{43,65,54.76,54,432.654,43,65.74,76.88};"
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 227))
 
     def test_228(self):
-        input = "const NK = 2 + 2 - 2 * 2 / 2 % 2;"
+        input = "const test = 12 + 34 - 56 * 78 / (98 + 76) - 54 % 321;"
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input,expect, 228))
 
     def test_229(self):
-        input = " var z NK = khang.name.first_name;" 
+        input = " var z testAccess = HCMUT.CSE.ComputerScience.PPL;" 
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input,expect, 229))
 
     def test_230(self):
-        input = "var z khang = a >= 2 <= \"string\" > a[2][3] < ID{A: 2} >= [2]S{2};"
+        input = "var z hoho = a.b[3].c.d.e[43]; "
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 230))
 
     def test_231(self):
         input = """    
-            func Add(a) [2]id {}
+            func Multi(d) [5][4][3]s {}
         """
-        expect = "Error on line 2 col 23: )"
+        expect = "Error on line 2 col 25: )"
         self.assertTrue(TestParser.checkParser( input, expect, 231))
 
     def test_232(self):
-        input = "const NK = NHATKHANG{name \"khang\"};"
-        expect = "Error on line 1 col 27: \"khang\""
+        input = "const ffff = Restaurant{name: \"Ngon\", address: \"232 Hai Ba Trung\"};"
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 232))
 
     def test_233(self):
-        input = "const NK = [true]ID{2, 3};"
-        expect = "Error on line 1 col 13: true"
+        input = "const dddd = [4+5+6+7]arr{1+2-3+4,5453,56.5};"
+        expect = "Error on line 1 col 16: +"
         self.assertTrue(TestParser.checkParser(input, expect, 233))
 
     def test_234(self):
-        input = "const NK = NHATKHANG{\"khang\"};"
-        expect = "Error on line 1 col 22: \"khang\""
+        input = "const aaaa = Table{name: \"HCMUT\", material: \"wood\"};"
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 234))
 
     def test_235(self):
         input = """
-            func Add(x int, y int) int  {return;};
+            func test(a, b, c int) float  {return hehe;};
         """
         expect = "successful"
         self.assertTrue(TestParser.checkParser( input, expect, 235))
 
     def test_236(self):
-        input = """
-            func (p Person) Greet() string {
-                if (1) {return;}
-                else if (1)
-                {}
-            };  
-"""
-        expect = "Error on line 4 col 17: else"
-        self.assertTrue(TestParser.checkParser( input,expect, 236))
+        input = """func test() {
+                        if (x > 10) {
+                            println("x is greater than 10");
+                            if (x>11) {
+                                println("x is greater than 10");
+                                if (x>11) {
+                                    println("x is greater than 10");
+                                } else {
+                                    println("x is greater than 10");
+                                }
+                            } else {
+                                println("x is greater than 10");
+                            }
+                        } else {
+                            println("x is greater than 10");
+                        }
+                    };"""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input,expect,236))
 
     def test_237(self):
-        input = " var z NK = add(3 a);" 
-        expect = "Error on line 1 col 19: a"
+        input = " var z fffff = sub(t int, f string);" 
+        expect = "Error on line 1 col 22: int"
         self.assertTrue(TestParser.checkParser(input,expect, 237))
 
     def test_238(self):
         input = """
-                                    func Add() {
-                                        for var i [2]int = 0; foo().a.b(); i[3] := 1 {
+                                    func Sub() {
+                                        for var a = 0; hehe().g.d.f[65]; d := 43 {
                                             // loop body
+                                                for var a = 0; hehe().g.d.f[65]; d := 43 {
+                                                    // loop body
+                                                    for var a = 0; hehe().g.d.f[65]; d := 43 {
+                                                        // loop body
+                                                        break;
+                                                    }
+                                                    break;
+                                                }
                                             break;
                                         }
                                     };"""
-        expect = "Error on line 3 col 77: ["
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input,expect, 238))
 
     def test_239(self):
-        input = " var z NK = add(a, c, 2);" 
+        input = " var z ss = mul(h,j,f,d,h,arr[6],f.h);" 
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input,expect, 239))
 
     def test_240(self):
         input = """
-            func (c int) Add(x int) int {}
-        """
-        expect = "Error on line 2 col 21: int"
-        self.assertTrue(TestParser.checkParser( input, expect, 240))
-
-    def test_241(self):
-        input = "const NK = [ID1][ID2]ID3{1, \"string\", {1.21, \"khang\"}};"
-        expect = "successful"
-        self.assertTrue(TestParser.checkParser(input , expect, 241))
-
-    def test_242(self):
-        input = """
-                                    func Add() {
-                                        if (1) {return;}
-                                        else if(2) {return string}
-                                        else if(3) {reutrn int;}
-                                    }"""
-        expect = "Error on line 4 col 41: else"
-        self.assertTrue(TestParser.checkParser(input,expect, 242))
-
-    def test_243(self):
-        input = """func foo () {
-        };"""
-        expect = "Error on line 2 col 9: }"
-        self.assertTrue(TestParser.checkParser(input,expect,243))
-
-    def test_244(self):
-        input = "const NK = Person{name: \"Alice\", age: 30};"
-        expect = "successful"
-        self.assertTrue(TestParser.checkParser(input,expect, 244))
-
-    def test_245(self):
-        input = """
-            func khang(x int, y int) int {}
-            func khang1() [2][3] ID {}
-            func khang2() {}                                       
-        """
-        expect = "Error on line 2 col 43: }"
-        self.assertTrue(TestParser.checkParser(input,expect, 245))
-
-    def test_246(self):
-        input = " var z NK = khang.name;" 
-        expect = "successful"
-        self.assertTrue(TestParser.checkParser(input,expect, 246))
-
-    def test_247(self):
-        input = """
-                                    func Add() {
-                                        for var i = 0; i < 10; i += 1 {
+            func test() {
+                        if (x > 10) {
+                            println("x is greater than 10");
+                            if (x>11) {
+                                println("x is greater than 10");
+                                if (x>11) {
+                                    println("x is greater than 10");
+                                } else {
+                                    println("x is greater than 10");
+                                    for var a = 0; hehe().g.d.f[65]; d := 43 {
+                                        // loop body
+                                        for var a = 0; hehe().g.d.f[65]; d := 43 {
                                             // loop body
                                             break;
                                         }
-                                    };"""
+                                        break;
+                                    }
+                                }
+                            } else {
+                                println("x is greater than 10");
+                            }
+                        } else {
+                            println("x is greater than 10");
+                        }
+                    };
+        """
         expect = "successful"
-        self.assertTrue(TestParser.checkParser(input,expect, 247))
+        self.assertTrue(TestParser.checkParser( input, expect, 240))
+
+    def test_241(self):
+        input = "const x = 12 * (5 + 7) - 9 / 3;"
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input, expect, 241))
+
+    def test_242(self):
+        input = "func myFunc(a int, b float) { return a + b; };"
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input, expect, 242))
+
+    def test_243(self):
+        input = "const y = [3]int{1, 2, 3};"
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input, expect, 243))
+
+    def test_244(self):
+        input = "var arr = [4]float{1.2, 3.4, 5.6, 7.8"
+        expect = "Error on line 1 col 38: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 244))
+
+    def test_245(self):
+        input = "func invalidFunc(a, b, int c) string { return \"test\"; }"
+        expect = "Error on line 1 col 24: int"
+        self.assertTrue(TestParser.checkParser(input, expect, 245))
+
+    def test_246(self):
+        input = "var result = compute(5, 6) + otherFunc();"
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input, expect, 246))
+
+    def test_247(self):
+        input = "const flag = true && false || true;"
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input, expect, 247))
 
     def test_248(self):
-        input = "var z khang = KHANG {name: NAME{firt_name: \"nhat\", last_name: \"khang\"}, age: a[2][3]};"
+        input = "const myArray = [2]bool{true, false, true};"
         expect = "successful"
-        self.assertTrue(TestParser.checkParser(input, expect,248))
+        self.assertTrue(TestParser.checkParser(input, expect, 248))
 
     def test_249(self):
-        input = """
-                                        
-            func (c c) Add(x int)  {return;}
-            
-            func Add(x int, y int) {return;}; var c int;
-            
-            var c int; type Calculator struct{a int;} type Calculator struct {} var c int;
-        """
-        expect = "Error on line 7 col 55: type"
+        input = "func test() { if (x == 5) return 10; else return 20; };"
+        expect = "Error on line 1 col 27: return"
         self.assertTrue(TestParser.checkParser(input, expect, 249))
 
     def test_250(self):
-        input = "const NK = [1+2+3]ID3{1, \"string\", {1.21, \"khang\"}};"
-        expect = "Error on line 1 col 14: +"
-        self.assertTrue(TestParser.checkParser(input , expect, 250))
+        input = "func test() { while (x < 10) { x = x + 1; } };"
+        expect = "Error on line 1 col 30: {"
+        self.assertTrue(TestParser.checkParser(input, expect, 250))
 
     def test_251(self):
-        input = """    
-            func khang() {
-                if (x > 10) {return;} 
-                if (x > 10) {
-                  return;
-                } else if (x == 10) {
-                    var z str;
-                } else {
-                    var z ID;
-                }
-            }
-        """
-        expect = "successful"
+        input = """var a === 4"""
+        expect = "Error on line 1 col 7: =="
         self.assertTrue(TestParser.checkParser(input, expect, 251))
 
     def test_252(self):
-        input ="""
-            func (p Person) Greet() string {
-                for i := 0
-                    i < 10
-                    i += 1 {
-                    return
-                }
-                for i := 0
-                    i < 10
-                    i += 1 
-                {
-                    return
-                }
-            };  
-"""
-        expect = "Error on line 10 col 29: ;"
-        self.assertTrue(TestParser.checkParser(input,expect, 252))
+        input = "var complex = [3][4]int{ {1,2,3,4}, {5,6,7,8}, {9,10,11,12} };"
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input, expect, 252))
 
     def test_253(self):
-        input = """
-            type Calculator interface {
-                                        
-                Add(x, y int) int;
-                Subtract(a, b float, c int) [3]ID;
-                Reset()
-                                        
-                SayHello(name string);
-                                        
-            }
-            type khang interface {}                                                                       
-        """
-        expect = "Error on line 11 col 35: }"
+        input = "func invalid() { return 5 + ; };"
+        expect = "Error on line 1 col 29: ;"
         self.assertTrue(TestParser.checkParser(input, expect, 253))
 
     def test_254(self):
-        input = """
-                                    func Add() {
-                                        2[1] + 2 += 2;     
-                                    }"""
-        expect = "Error on line 3 col 50: +="
-        self.assertTrue(TestParser.checkParser(input,expect, 254))
+        input = "const mixed = [2]string{ \"hello\", 123 };"
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input, expect, 254))
 
     def test_255(self):
-        input = " var z NK = khang.1;" 
-        expect = "Error on line 1 col 18: ."
-        self.assertTrue(TestParser.checkParser(input,expect, 255))
+        input = "func test() { for i = 0; i < 10; i++ { println(i); } };"
+        expect = "Error on line 1 col 21: ="
+        self.assertTrue(TestParser.checkParser(input, expect, 255))
 
     def test_256(self):
-        input = """
-                                    func Add() {
-                                        for index[2], value := range arr {
-                                        // index: 0, 1, 2
-                                        // value: 10, 20, 30
-                                        }
-                                    }"""
-        expect = "Error on line 3 col 53: ,"
+        input = "const val = 3.14e-2 + 42.0;"
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 256))
 
     def test_257(self):
-        input = "const NK = [5][0]string{1 \"string\" 3};"
-        expect = "Error on line 1 col 27: \"string\""
-        self.assertTrue(TestParser.checkParser(input , expect, 257))
+        input = "func test(a int, b float, c bool { return a + b; }"
+        expect = "Error on line 1 col 34: {"
+        self.assertTrue(TestParser.checkParser(input, expect, 257))
 
     def test_258(self):
-        input = "const NK = NHATKHANG{name: \"khang\" age: 21};"
-        expect = "Error on line 1 col 36: age"
+        input = "var obj = myStruct{field1: 10, field2: 20};"
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 258))
 
     def test_259(self):
-        input = """
-                                    func Add() {
-                                       a[2+3&&2] += foo().b[2];       
-                                    };"""
-        expect = "successful"
-        self.assertTrue(TestParser.checkParser(input,expect, 259))
+        input = "func nested() { if (x < 5) { if (y > 2) return x * y; else return y; } else return x; };"
+        expect = "Error on line 1 col 41: return"
+        self.assertTrue(TestParser.checkParser(input, expect, 259))
 
     def test_260(self):
-        input = " var z NK = add(3, a);" 
-        expect = "successful"
-        self.assertTrue(TestParser.checkParser(input,expect, 260))
+        input = "func invalidForLoop() { for var i = 0; i < 10 i++ { println(i); } };"
+        expect = "Error on line 1 col 47: i"
+        self.assertTrue(TestParser.checkParser(input, expect, 260))
 
     def test_261(self):
-        input = """
-                                    func Add() {
-                                        for index, value := range arr {
-                                            break;
-                                        }
-                                    };"""
+        input = "const pi = 3.14159;"
         expect = "successful"
-        self.assertTrue(TestParser.checkParser(input,expect, 261))
+        self.assertTrue(TestParser.checkParser(input, expect, 261))
 
     def test_262(self):
-        input = "var z khang = a.a.a[2].c[2].foo(1,);"
-        expect = "Error on line 1 col 28: ."
+        input = "var x = [5]int{1,2,3,4,5,6};"
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 262))
 
     def test_263(self):
-        input = """
-                                    func Add() {
-                                        return (2 + 3).b
-                                        return -1.c
-                                    }"""
-        expect = "Error on line 4 col 51: c"
+        input = "func greet() { println(\"Hello, world!\"); };"
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 263))
 
     def test_264(self):
-        input = "var z khang = a[2, 3]; "
-        expect = "Error on line 1 col 18: ,"
-        self.assertTrue(TestParser.checkParser(input,expect, 264))
+        input = "var arr = [3]float{1.5, 2.5, 3.5,};"
+        expect = "Error on line 1 col 34: }"
+        self.assertTrue(TestParser.checkParser(input, expect, 264))
 
     def test_265(self):
-        input = """ const NK = [ID1][ID2]int{{1, \"string\", {21}}, {1.21, \"khang\"}}; """
+        input = "const data = Person{name: \"Alice\", age: 25};"
         expect = "successful"
-        self.assertTrue(TestParser.checkParser(input , expect, 265))
+        self.assertTrue(TestParser.checkParser(input, expect, 265))
 
     def test_266(self):
-        input = """const a = [1]int{1+1}"""
-        expect = "Error on line 1 col 19: +"
-        self.assertTrue(TestParser.checkParser(input , expect, 266))
+        input = "func testFunc(a int, b string) { return a + b; };"
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input, expect, 266))
 
     def test_267(self):
-        input = """
-                                    func Add() {
-                                        a[2][3].foo(2 + 3, a {a:2})
-                                    };"""
-        expect = "successful"
-        self.assertTrue(TestParser.checkParser(input,expect, 267))
+        input = "const val = 1_000_000;"
+        expect = "Error on line 1 col 14: _000_000"
+        self.assertTrue(TestParser.checkParser(input, expect, 267))
 
     def test_268(self):
-        input = """    
-            func khang() {
-                x  := foo() + 3 / 4;
-                x.c[2][4] := 1 + 2;                       
-            }                                       
-        """
+        input = "var invalid = [3]string{\"hi\", 42, \"hello\"};"
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 268))
 
     def test_269(self):
-        input = "const NK = a.a.foo();"
+        input = "func checkEven(n int) bool { return n % 2 == 0; };"
         expect = "successful"
-        self.assertTrue(TestParser.checkParser(input,expect, 269))
+        self.assertTrue(TestParser.checkParser(input, expect, 269))
 
     def test_270(self):
-        input = "const NK = 1 || 2 && c + 3 / 2 - -1;"
-        expect = "successful"
-        self.assertTrue(TestParser.checkParser(input,expect, 270))
+        input = "func broken() { return (5 + 3 * ; };"
+        expect = "Error on line 1 col 33: ;"
+        self.assertTrue(TestParser.checkParser(input, expect, 270))
 
     def test_271(self):
-        input = """func main({};"""
-        expect = "Error on line 1 col 11: {"
-        self.assertTrue(TestParser.checkParser(input,expect,271))
+        input = """const myVar = "string without closing"; """
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input, expect, 271))
 
     def test_272(self):
-        input = """
-                                    func Add() {
-                                        if (x.foo().b[2]) {
-                                            if (){}
-                                        }
-                                    };"""
-        expect = "Error on line 4 col 49: )"
+        input = "var user = Account{id: 123, balance: 1000.0};"
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 272))
 
     def test_273(self):
-        input = "const NK = a[3][2];"
-        expect = "successful"
-        self.assertTrue(TestParser.checkParser(input,expect, 273))
+        input = "func loopExample() { for i = 0; i < 10; i++ println(i); };"
+        expect = "Error on line 1 col 28: ="
+        self.assertTrue(TestParser.checkParser(input, expect, 273))
 
     def test_274(self):
-        input = """
-                                    func Add() {
-                                        a.foo() += 2;
-                                    }"""
-        expect = "Error on line 3 col 49: +="
-        self.assertTrue(TestParser.checkParser(input,expect, 274))
+        input = """const wrongSyntax = [4]char{"a","b","c"};"""
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input, expect, 274))
 
     def test_275(self):
-        input = "const NK = int{\"khang\"};"
-        expect = "Error on line 1 col 12: int"
+        input = "var nested = Data{key: [2]int{5, 10}, value: 20};"
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 275))
 
     def test_276(self):
-        input = "const NK = 10.12;"
-        expect = "successful"
+        input = "func incorrect() { for var i = 0; i < 10 i++ { }; };"
+        expect = "Error on line 1 col 42: i"
         self.assertTrue(TestParser.checkParser(input, expect, 276))
 
     def test_277(self):
-        input = """    
-            const a = 2 func (c c) Add(x int) {}
-        """
-        expect = "Error on line 2 col 25: func"
-        self.assertTrue(TestParser.checkParser( input, expect, 277))
+        input = "const sum = 4 + 5 * (2 - 3);"
+        expect = "successful"
+        self.assertTrue(TestParser.checkParser(input, expect, 277))
 
     def test_278(self):
-        input = "const NK = foo(1+1);"
+        input = "func myFunc(x int, y float, z bool) { return x * y + z; };"
         expect = "successful"
-        self.assertTrue(TestParser.checkParser(input,expect, 278))
+        self.assertTrue(TestParser.checkParser(input, expect, 278))
 
     def test_279(self):
-        input = "var z khang = !a.a.a[2].c[2].foo(1, ID{A: 2});"
+        input = "var matrix = [2][2]int{{1, 2}, {3, 4}};"
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 279))
 
     def test_280(self):
-        input = "const NK = [5][0]{1, \"string\", 3};"
-        expect = "Error on line 1 col 18: {"
-        self.assertTrue(TestParser.checkParser(input , expect, 280))
+        input = "func invalidSyntax() { if x == 5 { return true; } };"
+        expect = "Error on line 1 col 27: x"
+        self.assertTrue(TestParser.checkParser(input, expect, 280))
 
     def test_281(self):
-        input = """
-                                    func Add() {
-                                        a[2].b := 2;          
-                                    };"""
+        input = "const x = (5 + 3) * 2 - 4 / 2;"
         expect = "successful"
-        self.assertTrue(TestParser.checkParser(input,expect, 281))
+        self.assertTrue(TestParser.checkParser(input, expect, 281))
 
     def test_282(self):
-        input = "const NK = 1;"
+        input = "var list = [3]bool{true, false, true, false};"
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 282))
 
     def test_283(self):
-        input = "var float;"
-        expect = "Error on line 1 col 5: float"
+        input = "func add(a int, b int) int { return a + b; };"
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 283))
 
     def test_284(self):
-        input = "const NK = NHATKHANG{name: \"khang\", age: 21, school: \"hcmut\",};"
-        expect = "Error on line 1 col 62: }"
+        input = "const invalid = User{name: \"Alice\", age:};"
+        expect = "Error on line 1 col 41: }"
         self.assertTrue(TestParser.checkParser(input, expect, 284))
 
     def test_285(self):
-        input ="""
-                func Add() {
-                    a += 2;
-                    a -= a[2].b();
-                    a /= 2
-                    a *= 2
-                    a %= 2;         
-                };"""
+        input = "func divide(a float, b float) float { return a / b; };"
         expect = "successful"
-        self.assertTrue(TestParser.checkParser(input ,expect, 285))
+        self.assertTrue(TestParser.checkParser(input, expect, 285))
 
     def test_286(self):
-        input = "const NK = false;"
+        input = "var numbers = [5]int{1, 2, 3, 4};"
         expect = "successful"
-        self.assertTrue(TestParser.checkParser( input,expect, 286))
+        self.assertTrue(TestParser.checkParser(input, expect, 286))
 
     def test_287(self):
-        input = """
-                func Add() {
-                    const a = a[2].b
-                    var a = a[2].b; var a = "s";           
-                }
-                """
-        expect = "successful"
+        input = "func printMsg() { println(\"Hello, world!\" };"
+        expect = "Error on line 1 col 43: }"
         self.assertTrue(TestParser.checkParser(input, expect, 287))
 
     def test_288(self):
-        input = "const NK = NHATKHANG{name: \"khang\";"
-        expect = "Error on line 1 col 35: ;"
+        input = "const correct = Person{name: \"John\", age: 30};"
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 288))
 
     def test_289(self):
-        input = """
-            type khang struct {
-                khang string ;
-                khang [1][3]khang ;                     
-            }                                                                     
-        """
-        expect = "successful"
+        input = "func loopTest() { for i = 0; i < 5; i++ { println(i); }; }"
+        expect = "Error on line 1 col 25: ="
         self.assertTrue(TestParser.checkParser(input, expect, 289))
 
     def test_290(self):
-        input = "const NK = NHATKHANG{};"
+        input = "const errorTest = [3]string{\"a\", \"b\", 5};"
         expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 290))
 
     def test_291(self):
-        input = "var y;"
-        expect = "Error on line 1 col 6: ;"
+        input = "var result = calculate(10, 20, 30);"
+        expect = "successful"
         self.assertTrue(TestParser.checkParser(input, expect, 291))
 
     def test_292(self):
-        input = "const NK = NHATKHANG(name: , age: 21);"
-        expect = "Error on line 1 col 26: :"
+        input = "func broken() { return (4 + 5 * ); };"
+        expect = "Error on line 1 col 33: )"
         self.assertTrue(TestParser.checkParser(input, expect, 292))
 
     def test_293(self):
-        input = """
-            func (c c) Add(x, c int) {return ;}
-"""
+        input = "var sample = [4]int{10, 20, 30, 40};"
         expect = "successful"
-        self.assertTrue(TestParser.checkParser(input ,expect, 293))
+        self.assertTrue(TestParser.checkParser(input, expect, 293))
 
     def test_294(self):
-        input = "const NK = 2 + 2 - 2 ** 2 // 2 % 2;"
-        expect = "Error on line 1 col 23: *"
-        self.assertTrue(TestParser.checkParser(input,expect, 296))
+        input = "const invalidStruct = Struct{name: \"Test\" age: 25};"
+        expect = "Error on line 1 col 43: age"
+        self.assertTrue(TestParser.checkParser(input, expect, 294))
 
     def test_295(self):
-        input = "const khang = a.b() + 2;"
-        expect = "successful"
+        input = "func conditional() { if (x > 10) return; else return; };"
+        expect = "Error on line 1 col 34: return"
         self.assertTrue(TestParser.checkParser(input, expect, 295))
 
     def test_296(self):
-        input = "const NK = 2 == 2 != 2 > 2 < 2 >= 2 <= 2;"
-        expect = "successful"
-        self.assertTrue(TestParser.checkParser(input,expect, 296))
+        input = """const missingQuote = "This is missing an end quote" """
+        expect = "Error on line 1 col 53: <EOF>"
+        self.assertTrue(TestParser.checkParser(input, expect, 296))
 
     def test_297(self):
-        input = """
-            var x int = foo() + 3 / 4;
-            var y = "Hello" / 4
-            var z str;
-        """
+        input = "var dictionary = Dict{key: \"value\", number: 42};"
         expect = "successful"
-        self.assertTrue(TestParser.checkParser(input ,expect, 297))
+        self.assertTrue(TestParser.checkParser(input, expect, 297))
 
     def test_298(self):
-        input = "const NK = !3 && 3 || 3 && !!3 ;"
-        expect = "successful"
-        self.assertTrue(TestParser.checkParser(input,expect, 298))
+        input = "func badSyntax() { while x < 5 { println(x); }; }"
+        expect = "Error on line 1 col 26: x"
+        self.assertTrue(TestParser.checkParser(input, expect, 298))
 
     def test_299(self):
-        input = "const NK = 1[2] + foo()[2] + ID[2].b.b;"
+        input = "var array = [3][2]int{{1,2}, {3,4}, {5,6}};"
         expect = "successful"
-        self.assertTrue(TestParser.checkParser(input,expect,299))
+        self.assertTrue(TestParser.checkParser(input, expect, 299))
 
     def test_300(self):
-        input = "var z NK = ID {a: 2, b: 2 + 2 + ID {a: 2}};"
-        expect = "successful"
+        input = "func missingBracket() { for i = 0; i < 5; i++ println(i) };"
+        expect = "Error on line 1 col 31: ="
         self.assertTrue(TestParser.checkParser(input, expect, 300))
 
-    def test_301(self):
-        input = "const NK = ca.foo(132) + b.c[2];"
-        expect = "successful"
-        self.assertTrue(TestParser.checkParser(input,"successful", 301))
 
     
 

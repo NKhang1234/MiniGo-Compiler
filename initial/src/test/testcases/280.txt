@@ -1,1 +1,1 @@
-const NK = [5][0]{1, "string", 3};
+func invalidSyntax() { if x == 5 { return true; } };

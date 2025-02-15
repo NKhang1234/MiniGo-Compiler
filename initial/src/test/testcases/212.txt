@@ -1,1 +1,7 @@
-const NK = [10.]ID{2, 3};
+func PrintArray() {
+                        var arr [3]int = {1, 2, 3};
+                        for _, value := range arr {
+                            putInt(value);
+                        }
+                    }
+                    

@@ -1,1 +1,1 @@
-const NK = NHATKHANG{name: "khang" age: 21};
+var obj = myStruct{field1: 10, field2: 20};

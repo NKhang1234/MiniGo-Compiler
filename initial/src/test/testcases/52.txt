@@ -1,1 +1,1 @@
- "This is a string with escaped: \n \t \r \" \\" 
+ "This is a string with escaped: 	 

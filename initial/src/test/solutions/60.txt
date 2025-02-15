@@ -1,1 +1,1 @@
-const,MN,=,[,5,],[,0,],string,{,1,,,"string",},;,<EOF>
+const,AB,=,[,4,],[,2,],float,{,3.14,,,2.71,},<EOF>

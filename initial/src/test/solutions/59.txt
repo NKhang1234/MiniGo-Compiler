@@ -1,1 +1,1 @@
-func,(,c,Calculator,),nhat,(,),ID,{,},;,func,(,c,Calculator,),nhat,(,x,float,,,y,[,2,],nhat,),{,},;,<EOF>
+func,(,p,Processor,),execute,(,),Data,{,},;,func,(,p,Processor,),execute,(,x,string,,,y,[,5,],Task,),{,},;,<EOF>

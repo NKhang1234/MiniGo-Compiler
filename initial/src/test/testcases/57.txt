@@ -1,1 +1,1 @@
- "This " ?# " string" 
+ "This " ? is strange token" 

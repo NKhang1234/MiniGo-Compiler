@@ -1,1 +1,1 @@
-var z khang = KHANG {name: NAME{firt_name: "nhat", last_name: "khang"}, age: a[2][3]};
+const myArray = [2]bool{true, false, true};

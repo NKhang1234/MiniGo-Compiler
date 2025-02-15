@@ -1,1 +1,1 @@
-var z khang = !a.a.a[2].c[2].foo(1, ID{A: 2});
+var matrix = [2][2]int{{1, 2}, {3, 4}};

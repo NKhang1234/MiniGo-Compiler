@@ -1,5 +1,1 @@
- /*This is multi
-                    line comment*/ multi
-                // This is single line comment
-                single
-                
+const MAX_SIZE = 1000;

@@ -1,1 +1,1 @@
-a,.,b,==,3,||,c,==,=,d,||,c,+=,=,a,||,b,-=,==,a,<EOF>
+func,(,p,Processor,),Execute,(,),int,{,return,p,.,data,*,2,;,},<EOF>

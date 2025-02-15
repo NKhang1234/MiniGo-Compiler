@@ -1,8 +1,5 @@
 
-                                    func Add() {
-                                        if (x.foo().b[2]) {
-                                            if (true){return; } else {return; }
-
-                                        } else if(2) {return; 
-                                        }
-                                    };
+                func add(a int, b int) int {
+                    return a + b
+                }
+                
