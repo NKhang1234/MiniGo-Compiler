@@ -143,7 +143,7 @@ expr4: expr4 (MULTI | DIV | MODULO) expr5 | expr5;
 expr5: ('!' | '-') expr5 | expr6;
 expr6: expr6 OPEN_SQUARE expr CLOSE_SQUARE| expr6 DOT ID | expr6 DOT funcCall| expr7;// access array | struct access | method call
 expr7: OPEN_ROUND expr CLOSE_ROUND | operand;
-operand: literal | funcCall | ID (OPEN_CURVE structElList CLOSE_CURVE | ) | ID;
+operand: literal | funcCall | ID;
 
 literal: literalConst | arrLit | structLit;
 

@@ -730,4 +730,3 @@ class ParserSuite(unittest.TestCase):
         input = "func missingBracket() { for i = 0; i < 5; i++ println(i) };"
         expect = "Error on line 1 col 31: ="
         self.assertTrue(TestParser.checkParser(input, expect, 300))
-
