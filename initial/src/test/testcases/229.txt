@@ -1,1 +1,1 @@
-const Dk = 2 + 2 - 2 ** 2 // 2 % 2;
+ var z testAccess = HCMUT.CSE.ComputerScience.PPL;

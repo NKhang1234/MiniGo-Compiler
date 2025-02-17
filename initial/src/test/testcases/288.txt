@@ -1,7 +1,1 @@
-
-                                    func Add() {
-                                        if (x.foo().b[2])
-                                        {
-                                            if (){}
-                                        }
-                                    }
+const correct = Person{name: "John", age: 30};

@@ -1,0 +1,1 @@
+var,a,float64,=,compute,(,),-,3,*,2,;,var,b,=,"hello",+,"world",;,var,c,bool,;,var,d,char,=,getValue,(,),%,5,;,var,e,=,myFunc,(,),*,10,;,var,f,myType,;,<EOF>

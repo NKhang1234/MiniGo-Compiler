@@ -1,12 +1,1 @@
-    
-            func khang() {
-                if (x > 10) {} 
-                if (x > 10) {
-                  
-                } else if (x == 10) {
-                    var z str;
-                } else {
-                    var z ID;
-                }
-            }
-        
+const myVar = "string without closing"; 

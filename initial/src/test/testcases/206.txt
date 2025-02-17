@@ -1,1 +1,6 @@
-const Dk = [5][0]string{1, "string"};
+func LoopError() {
+                        for ;; {
+                            putString("Infinite Loop");
+                        }
+                    }
+                    

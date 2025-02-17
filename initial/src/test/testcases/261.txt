@@ -1,1 +1,1 @@
-var float;
+const pi = 3.14159;

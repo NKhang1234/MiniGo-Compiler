@@ -1,0 +1,1 @@
+const Mn = foo(1+1);

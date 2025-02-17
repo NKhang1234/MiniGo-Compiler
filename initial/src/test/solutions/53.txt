@@ -1,1 +1,1 @@
-func,abc,(,),<EOF>
+func,calculate,(,x,int,,,y,string,),string,{,},;,func,transform,(,),[,5,],[,7,],StructType,{,},;,func,analyze,(,),{,run,(,),;,},;,<EOF>

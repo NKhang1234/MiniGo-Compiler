@@ -1,1 +1,5 @@
-const Dk = DUYKHANG{name: "khang", age: 21, school: "hcmut",};
+    
+            func Main() {
+                var arr [3]int = GetNumbers();
+            }
+        

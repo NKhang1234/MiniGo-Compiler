@@ -1,1 +1,1 @@
- var z KHANG = a[2, 5];
+ var z nhat = a[2, 5];

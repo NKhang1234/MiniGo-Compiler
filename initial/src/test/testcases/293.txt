@@ -1,5 +1,1 @@
-
-                                    func Add() {
-                                        for index, value := range 23 {
-                                        }
-                                    }
+var sample = [4]int{10, 20, 30, 40};

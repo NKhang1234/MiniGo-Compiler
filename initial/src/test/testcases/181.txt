@@ -1,4 +1,4 @@
 
-            func (c Calculator) khang() ID {}      
-            func (c Calculator) khang(x float, y [2]khang) {}                                                      
+            func (c Calculator) nhat() ID {}
+            func (c Calculator) nhat(x float, y [2]nhat) {}
         

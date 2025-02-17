@@ -1,1 +1,1 @@
- var z DK = add(a, c, 2);
+const y = [3]int{1, 2, 3};

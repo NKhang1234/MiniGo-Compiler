@@ -1,0 +1,1 @@
+func (p Processor) Execute() int { return p.data * 2; }

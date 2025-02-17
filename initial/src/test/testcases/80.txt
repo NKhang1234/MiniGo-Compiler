@@ -1,0 +1,1 @@
+try { riskyCode(); } catch (e) { handleError(e); }

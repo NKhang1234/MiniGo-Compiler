@@ -1,1 +1,1 @@
- var z DK = khang.name.first_name;
+ var z fffff = sub(t int, f string);

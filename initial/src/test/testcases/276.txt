@@ -1,4 +1,1 @@
-
-            type Calculator interface {}
-            type Person struct {};
-        
+func incorrect() { for var i = 0; i < 10 i++ { }; };

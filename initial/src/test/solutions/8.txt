@@ -1,1 +1,1 @@
-Illegal escape in string: Hello \s
+Illegal escape in string: "Hello \s

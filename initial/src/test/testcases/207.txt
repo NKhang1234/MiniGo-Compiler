@@ -1,1 +1,10 @@
-const Dk = [5][5]string{1, "string", {1.21, "khang"}, {ID}};
+    
+            func ExitLoop() {
+                for i := 0; i < 10; i += 1 {
+                    if i == 5 {
+                        break;
+                    }
+                }
+            }
+
+        

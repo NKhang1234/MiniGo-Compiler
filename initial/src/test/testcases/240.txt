@@ -1,1 +1,27 @@
- var z DK = add();
+
+            func test() {
+                        if (x > 10) {
+                            println("x is greater than 10");
+                            if (x>11) {
+                                println("x is greater than 10");
+                                if (x>11) {
+                                    println("x is greater than 10");
+                                } else {
+                                    println("x is greater than 10");
+                                    for var a = 0; hehe().g.d.f[65]; d := 43 {
+                                        // loop body
+                                        for var a = 0; hehe().g.d.f[65]; d := 43 {
+                                            // loop body
+                                            break;
+                                        }
+                                        break;
+                                    }
+                                }
+                            } else {
+                                println("x is greater than 10");
+                            }
+                        } else {
+                            println("x is greater than 10");
+                        }
+                    };
+        

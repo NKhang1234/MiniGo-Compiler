@@ -1,8 +1,1 @@
-    
-            type Calculator interface {
-                Add(x, y [2]ID) [2]int;
-                Subtract(a, b float, c, e int);
-                Reset()
-                SayHello(name string)
-            }
-        
+var nested = Data{key: [2]int{5, 10}, value: 20};

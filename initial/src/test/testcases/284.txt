@@ -1,4 +1,1 @@
-
-                                    func Add() {
-                                        a[2].b := 2;          
-                                    }
+const invalid = User{name: "Alice", age:};

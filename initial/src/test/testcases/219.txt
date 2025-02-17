@@ -1,1 +1,5 @@
-const Dk = Person{name: "Alice", age: 30};
+    
+            func Main() {
+                var result int = Sum(5);
+            }
+        

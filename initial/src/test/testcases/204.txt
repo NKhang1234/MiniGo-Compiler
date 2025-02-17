@@ -1,1 +1,4 @@
-const Dk = nil;
+func Calculate() {
+                        var x =;
+                    }
+                    

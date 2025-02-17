@@ -1,1 +1,1 @@
-range,array,(,),{,},<EOF>
+{,continue,},;,<EOF>

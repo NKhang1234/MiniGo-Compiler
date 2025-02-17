@@ -1,0 +1,1 @@
+type,Sharp,interface,{,Add,(,x,,,y,int,),int,;,Multiply,(,a,,,b,float64,,,c,int,),(,result,float64,),;,Clear,(,),;,Display,(,model,string,),string,;,},<EOF>

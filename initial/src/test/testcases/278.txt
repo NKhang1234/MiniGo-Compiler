@@ -1,3 +1,1 @@
-
-            func Add(x int, y int) int  {};
-        
+func myFunc(x int, y float, z bool) { return x * y + z; };

@@ -1,7 +1,1 @@
-    
-            func khang() {
-                for i < 10 {}
-                for i := 0; i < 10; i += 1 {}
-                for index, value := range array {}
-            }
-        
+var user = Account{id: 123, balance: 1000.0};

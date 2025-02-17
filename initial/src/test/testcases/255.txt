@@ -1,1 +1,1 @@
-var z khang = KHANG {name: NAME{firt_name: "duy", last_name: "khang"}, age: a[2][3]};
+func test() { for i = 0; i < 10; i++ { println(i); } };

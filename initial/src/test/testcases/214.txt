@@ -1,1 +1,6 @@
-const Dk = [14]float{};
+
+            type Person struct {
+                name string;
+                age int;
+            }
+        

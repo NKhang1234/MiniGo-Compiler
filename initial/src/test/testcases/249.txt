@@ -1,1 +1,1 @@
-const Dk = a.a.foo();
+func test() { if (x == 5) return 10; else return 20; };

@@ -1,1 +1,4 @@
-const Dk = DUYKHANG{name "khang"};
+func GetNumbers() [3]int {
+                        return {1, 2, 3};
+                    }
+                    

@@ -1,1 +1,1 @@
-multi,single,<EOF>
+multi,;,single,;,<EOF>

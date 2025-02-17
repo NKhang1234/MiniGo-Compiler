@@ -1,5 +1,1 @@
-
-            func (c Calculator) khang(x int) int {}  
-            func (c Calculator) khang() ID {}      
-            func (c Calculator) khang(x int, y [2]khang) {}                                                      
-        
+func testFunc(a int, b string) { return a + b; };

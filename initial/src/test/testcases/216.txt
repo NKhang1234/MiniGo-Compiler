@@ -1,1 +1,4 @@
-const Dk = [5][0]string(1, "string", 3);
+func AccessError() {
+                        var p Person;
+                        putStringLn(p.name); // Uninitialized field
+                    }

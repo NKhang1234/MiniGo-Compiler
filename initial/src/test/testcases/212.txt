@@ -1,1 +1,7 @@
-const Dk = [nil]ID3{1, "string", {1.21, "khang"}};
+func PrintArray() {
+                        var arr [3]int = {1, 2, 3};
+                        for _, value := range arr {
+                            putInt(value);
+                        }
+                    }
+                    

@@ -1,1 +1,1 @@
-type,Calculator,interface,{,Add,(,x,,,y,int,),int,;,Subtract,(,a,,,b,float,,,c,int,),[,3,],ID,;,Reset,(,),Show,(,name,string,),;,},<EOF>
+type,Calculator,interface,{,Add,(,x,,,y,int,),int,;,Subtract,(,a,,,b,float,,,c,int,),[,3,],ID,;,Reset,(,),;,Show,(,name,string,),;,},<EOF>

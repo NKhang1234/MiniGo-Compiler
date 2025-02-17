@@ -1,1 +1,1 @@
-var z khang = a.a.a[2].c[2].foo(1,);
+func invalid() { return 5 + ; };

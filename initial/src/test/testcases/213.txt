@@ -1,1 +1,6 @@
-const Dk = [1+2+3]ID3{1, "string", {1.21, "khang"}};
+func PrintArray() {
+                        for _, value := range arr {
+                            putInt(value);
+                        }
+                    }
+                    

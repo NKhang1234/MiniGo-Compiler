@@ -1,3 +1,1 @@
-    
-            func Add(a) [2]id {}
-        
+const wrongSyntax = [4]char{"a","b","c"};

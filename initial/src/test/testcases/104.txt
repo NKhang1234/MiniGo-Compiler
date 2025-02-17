@@ -1,1 +1,1 @@
-_VOTien
+type Calculator interface

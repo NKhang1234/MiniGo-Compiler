@@ -1,1 +1,1 @@
-12.e-8,<EOF>
+var,abc,int,;,<EOF>
